@@ -14,11 +14,9 @@ import React from "react";
 
 import { style } from "./style";
 
-const classes = style();
-
-export default class Header {
-
-  public render = () => (
+const Header: React.FC = () => {
+  const classes = style();
+  return (
     <AppBar position="static" >
       <Toolbar>
         <Typography variant="h6" className={classes.title}>Rugal</Typography>
@@ -31,5 +29,6 @@ export default class Header {
         </IconButton>
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
+export default Header;
