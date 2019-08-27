@@ -2,11 +2,9 @@ import {
   AppBar,
   Button,
   Container,
-  createMuiTheme,
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import { blue, pink } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
 import CategoryIcon from "@material-ui/icons/Category";
 import ContactsIcon from "@material-ui/icons/Contacts";
@@ -16,19 +14,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { ThemeProvider } from "@material-ui/styles";
 import React from "react";
 
+import { theme } from "../style";
 import { GlobalStyle, style } from "./style";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: blue,
-    secondary: pink,
-  },
-});
-
-export default function App() {
-
+const App: React.FC = () => {
   const classes = style();
-
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -59,4 +49,5 @@ export default function App() {
       </div>
     </ThemeProvider>
   );
-}
+};
+export default App;
