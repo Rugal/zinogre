@@ -4,18 +4,18 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
 import CategoryIcon from "@material-ui/icons/Category";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import LabelIcon from "@material-ui/icons/Label";
-import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
 
+import MenuButton from "./menuButton";
 import { style } from "./style";
 
 const Header: React.FC = () => {
   const classes = style();
+
   return (
     <AppBar position="static" >
       <Toolbar>
@@ -24,11 +24,9 @@ const Header: React.FC = () => {
         <Button color="inherit"><CategoryIcon className={classes.icon} /></Button>
         <Button color="inherit"><LabelIcon className={classes.icon} /></Button>
         <Button color="inherit"><FormatListBulletedIcon className={classes.icon} /></Button>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
+        <MenuButton />
       </Toolbar>
-    </AppBar>
+    </AppBar >
   );
 };
 export default Header;
