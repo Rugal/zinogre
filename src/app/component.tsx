@@ -8,13 +8,11 @@ import {
 } from "@material-ui/core";
 import { blue, pink } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
 import CategoryIcon from "@material-ui/icons/Category";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import LabelIcon from "@material-ui/icons/Label";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 import { ThemeProvider } from "@material-ui/styles";
 import React from "react";
 
