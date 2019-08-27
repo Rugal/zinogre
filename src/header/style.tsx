@@ -21,9 +21,6 @@ export const style = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
-    root: {
-      flexGrow: 1,
-    },
     title: {
       flexGrow: 1,
     },
