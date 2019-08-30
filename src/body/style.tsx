@@ -24,22 +24,9 @@ export const ScreenBody = Style.div`
 
 export const style = makeStyles((theme: Theme) =>
   createStyles({
-    heading: {
-      flexBasis: "33.33%",
-      flexShrink: 0,
-      fontSize: theme.typography.pxToRem(15),
-    },
     root: {
       marginTop: "64px",
       width: "100%",
-    },
-    secondaryHeading: {
-      color: theme.palette.text.secondary,
-      fontSize: theme.typography.pxToRem(15),
-    },
-    title: {
-      flexGrow: 1,
-      marginTop: "16px",
     },
   }),
 );
