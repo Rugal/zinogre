@@ -2,9 +2,10 @@ import { Container } from "@material-ui/core";
 import React from "react";
 
 import Panel from "./panel";
+import { IPanel } from "./panel/model";
 import { ScreenBody, style } from "./style";
 
-const Body: React.FC = () => {
+const Body: React.SFC = () => {
   const classes = style();
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -12,14 +13,19 @@ const Body: React.FC = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const panelsData: IPanel[] = [
+    { title: "about", content: "HERE" },
+    { title: "contact", content: "HERE" },
+  ];
+  const panels = panelsData.map((p, i) =>
+    <Panel expanded={expanded} handler={handleChange} key={i} name={`panel${i}`} panel={p} />,
+  );
+
   return (
     <ScreenBody>
       <Container maxWidth="md">
         <div className={classes.root}>
-          <Panel expanded={expanded} handler={handleChange} name="panel1" title="Rugal" />
-          <Panel expanded={expanded} handler={handleChange} name="panel2" title="Bernstein" />
-          <Panel expanded={expanded} handler={handleChange} name="panel3" title="Tenjin" />
-          <Panel expanded={expanded} handler={handleChange} name="panel4" title="Descend" />
+          {panels}
         </div>
       </Container>
     </ScreenBody >

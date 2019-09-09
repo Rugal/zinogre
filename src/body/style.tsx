@@ -25,7 +25,7 @@ export const ScreenBody = Style.div`
 export const style = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginTop: "64px",
+      marginTop: "128px",
       width: "100%",
     },
   }),
