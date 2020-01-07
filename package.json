@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.8-4.2.2",
+    "@stoplight/prism-cli": "^3.2.3",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.17",
     "@types/node": "12.7.2",
@@ -34,7 +35,8 @@
     "eject": "react-scripts eject",
     "lint": "tslint src/**/*.tsx",
     "lint:fix": "tslint --fix src/**/*.tsx",
-    "openapi": "openapi-generator generate -i ../private-tracker/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/openapi"
+    "openapi": "openapi-generator generate -i ../private-tracker/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/openapi",
+    "mock": "prism mock ../private-tracker/configuration/openapi/contract.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
