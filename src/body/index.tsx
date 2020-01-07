@@ -1,3 +1,3 @@
-import Body from "./component";
+import Body from "./container";
 
 export default Body;

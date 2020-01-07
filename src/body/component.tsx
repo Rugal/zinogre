@@ -1,11 +1,15 @@
 import { Container } from "@material-ui/core";
 import React from "react";
 
+import { PostPage } from "../openapi";
 import Panel from "./panel";
-import { IPanel } from "./panel/model";
 import { ScreenBody, style } from "./style";
 
-const Body: React.SFC = () => {
+interface IProps {
+  postPage: PostPage;
+}
+
+const Body: React.FC<IProps> = (props) => {
   const classes = style();
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -13,22 +17,27 @@ const Body: React.SFC = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const panelsData: IPanel[] = [
-    { title: "about", content: "HERE" },
-    { title: "contact", content: "HERE" },
-  ];
-  const panels = panelsData.map((p, i) =>
-    <Panel expanded={expanded} handler={handleChange} key={i} name={`panel${i}`} panel={p} />,
+  const { items } = props.postPage;
+
+  const panelsData = !items ? <div /> : items.map((p, i) =>
+    <Panel
+      expanded={expanded}
+      handler={handleChange}
+      key={i}
+      name={`panel${i}`}
+      panel={{ title: p.title, content: p.content, subtitle: p.hash }}
+    />,
   );
 
   return (
     <ScreenBody>
       <Container maxWidth="md">
         <div className={classes.root}>
-          {panels}
+          {panelsData}
         </div>
       </Container>
     </ScreenBody >
   );
 };
+
 export default Body;

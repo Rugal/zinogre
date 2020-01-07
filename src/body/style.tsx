@@ -7,7 +7,7 @@ import {
 import React from "react";
 import Style from "styled-components";
 
-import img from "./eva.jpg";
+import img from "./image/eva.jpg";
 
 export const ScreenBody = Style.div`
   background: url(${img}) 50% 50% no-repeat;
