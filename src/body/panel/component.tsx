@@ -4,6 +4,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import { IPanel } from "./model";
 import { style } from "./style";
@@ -30,7 +31,7 @@ const Panel: React.FC<IProps> = (p: IProps) => {
         <Typography className={classes.subtitle}>{panel.subtitle}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>{panel.content}</Typography>
+        <Typography><ReactMarkdown source={panel.content} /></Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
