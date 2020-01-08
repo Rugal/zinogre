@@ -1559,6 +1559,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/bencode@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/bencode/-/bencode-2.0.0.tgz#75161d132f15a912aa49ea0c861c53ddb8539a76"
+  integrity sha512-ntDggX576d+MULpy9ApOy3OI9GqO86H+T9zEwYk3fdVaLi85M/1l+GVR/UWfITg9czcOO2SxZJyzyTOrI8UsFA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/cheerio@*":
   version "0.22.15"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.15.tgz#69040ffa92c309beeeeb7e92db66ac3f80700c0b"
@@ -2611,6 +2618,13 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
+
+bencode@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/bencode/-/bencode-2.0.1.tgz#667a6a31c5e038d558608333da6b7c94e836c85b"
+  integrity sha512-2uhEl8FdjSBUyb69qDTgOEeeqDTa+n3yMQzLW0cOzNf1Ow5bwcg3idf+qsWisIKRH8Bk8oC7UXL8irRcPA8ZEQ==
+  dependencies:
+    safe-buffer "^5.1.1"
 
 better-assert@~1.0.0:
   version "1.0.2"

@@ -24,6 +24,7 @@ const Body: React.FC<IProps> = (props) => {
       expanded={expanded}
       handler={handleChange}
       key={i}
+      pid={p.pid}
       name={`panel${i}`}
       panel={{ title: p.title, content: p.content, subtitle: p.hash }}
     />,

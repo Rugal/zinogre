@@ -22,7 +22,7 @@ const Header: React.FC<IProps> = (props) => {
   const classes = style();
 
   const loadPostPage = () => new PostApi().getByPage(1, "1")
-    .then((a) => props.setPostPage(a));
+    .then(response => props.setPostPage(response));
 
   return (
     <AppBar position="static" >

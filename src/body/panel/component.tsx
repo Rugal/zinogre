@@ -1,11 +1,13 @@
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import GetAppIcon from '@material-ui/icons/GetApp';
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
+import { TorrentApi } from "../../openapi";
 import { IPanel } from "./model";
 import { style } from "./style";
 
@@ -14,11 +16,24 @@ interface IProps {
   handler: (panel: string) => any;
   name: string;
   panel: IPanel;
+  pid: number;
 }
 
 const Panel: React.FC<IProps> = (p: IProps) => {
   const classes = style();
   const { panel } = p;
+
+  const download = () => new TorrentApi().download(p.pid, 1, "1", {
+    responseType: "arraybuffer", // this is very important
+  })
+    .then(({ data }) => {
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(new Blob([data]));
+      link.download = `${panel.subtitle}.torrent`; //any other extension
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    });
 
   return (
     <ExpansionPanel expanded={p.expanded === p.name} onChange={p.handler(p.name)}>
@@ -32,6 +47,7 @@ const Panel: React.FC<IProps> = (p: IProps) => {
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography><ReactMarkdown source={panel.content} /></Typography>
+        <Button color="inherit" onClick={download}><GetAppIcon /></Button>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
