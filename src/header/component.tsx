@@ -21,7 +21,11 @@ interface IProps {
 const Header: React.FC<IProps> = (props) => {
   const classes = style();
 
-  const loadPostPage = () => new PostApi().getByPage(1, "1")
+  const loadPostPage = () => new PostApi().getByPage(undefined, undefined, {
+    headers: {
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdXRoZW50aWNhdGlvbiIsImlzcyI6InB0IiwiZXhwIjoxNTc4NjYzODM5LCJ1aWQiOjF9.qTqmXI5m2EJ-aacEd_m9LiEFLor_pAxUwbA1Bg3ypCM"
+    }
+  })
     .then(response => props.setPostPage(response));
 
   return (

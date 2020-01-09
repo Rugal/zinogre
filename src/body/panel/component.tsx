@@ -23,8 +23,11 @@ const Panel: React.FC<IProps> = (p: IProps) => {
   const classes = style();
   const { panel } = p;
 
-  const download = () => new TorrentApi().download(p.pid, 1, "1", {
+  const download = () => new TorrentApi().download(p.pid, {
     responseType: "arraybuffer", // this is very important
+    headers: {
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdXRoZW50aWNhdGlvbiIsImlzcyI6InB0IiwiZXhwIjoxNTc4NjYzODM5LCJ1aWQiOjF9.qTqmXI5m2EJ-aacEd_m9LiEFLor_pAxUwbA1Bg3ypCM"
+    }
   })
     .then(({ data }) => {
       const link = document.createElement('a');

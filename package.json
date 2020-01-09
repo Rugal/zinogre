@@ -45,7 +45,7 @@
     "lint:fix": "tslint --fix src/**/*.tsx",
     "server": "lite-server -c lite-server.json",
     "openapi": "openapi-generator generate -i ../glavenus/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/openapi",
-    "mock": "prism mock ../private-tracker/configuration/openapi/contract.yml"
+    "mock": "prism mock ../glavenus/configuration/openapi/contract.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
