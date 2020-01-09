@@ -1,6 +1,7 @@
 import { Container } from "@material-ui/core";
 import React from "react";
 
+import Constant from "../constant";
 import { PostPage } from "../openapi";
 import Panel from "./panel";
 import { ScreenBody, style } from "./style";
@@ -19,7 +20,7 @@ const Body: React.FC<IProps> = (props) => {
 
   const { items } = props.postPage;
 
-  const panelsData = !items ? <div /> : items.map((p, i) =>
+  const panelsData = (localStorage.getItem(Constant.AUTHORIZATION) && items) ? items.map((p, i) =>
     <Panel
       expanded={expanded}
       handler={handleChange}
@@ -27,8 +28,9 @@ const Body: React.FC<IProps> = (props) => {
       pid={p.pid}
       name={`panel${i}`}
       panel={{ title: p.title, content: p.content, subtitle: p.hash }}
-    />,
-  );
+    />)
+    : <div />
+    ;
 
   return (
     <ScreenBody>
