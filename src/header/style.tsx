@@ -34,6 +34,12 @@ export const style = makeStyles((theme: Theme) =>
         "backgroundColor": theme.palette.primary.main,
       },
     },
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
     title: {
       flexGrow: 1,
     },
