@@ -45,7 +45,7 @@ const Login: React.FC<IProps> = (p) => {
   };
 
   // 1. submit login request
-  const submit = () => email && password && !invalidEmail && new UserApi().login(1, "0")
+  const submit = () => email && password && !invalidEmail && new UserApi().login(1, password)
     .then(response => {
       // 2. show progress circle in login screen
       p.show();
