@@ -40,6 +40,11 @@ const Login: React.FC<IProps> = (p) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   const validateInput = (input: string) => {
     setInvalidEmail(input ? !validateEmail(input) : false);
     setEmail(input);
@@ -49,8 +54,7 @@ const Login: React.FC<IProps> = (p) => {
   const submit = () => email && password && !invalidEmail && new UserApi().login(1, password)
     .then(response => {
       // 2. Clean form value
-      setEmail("");
-      setPassword("");
+      resetForm();
       // 3. show progress circle in login screen
       p.show();
       // 4. set corresponding result
@@ -107,7 +111,7 @@ const Login: React.FC<IProps> = (p) => {
         <Button onClick={submit} color="primary">
           Login
           </Button>
-        <Button onClick={p.handleClose} color="secondary">
+        <Button onClick={() => { p.handleClose(); resetForm(); }} color="secondary">
           Cancel
           </Button>
       </DialogActions>
