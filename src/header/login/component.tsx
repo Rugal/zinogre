@@ -97,6 +97,7 @@ const Login: React.FC<IProps> = (p) => {
               label="PASSWORD"
               onChange={({ target }) => setPassword(target.value)}
               required={true}
+              type="password"
               value={password}
             />
           </FormControl>
