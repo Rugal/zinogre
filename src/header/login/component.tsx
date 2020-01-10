@@ -17,6 +17,7 @@ import Constant from "../../constant";
 interface IProps {
   handleClose: () => any;
   hide: () => any;
+  login: (token: string) => any;
   open: boolean;
   show: () => any;
   showProgressBar: boolean;
@@ -51,7 +52,11 @@ const Login: React.FC<IProps> = (p) => {
       p.show();
       // 3. set corresponding result
       setTimeout(() => {
-        localStorage.setItem(Constant.AUTHORIZATION, `Bearer ${response.data}`);
+        // TODO: persist to localstorage
+        const token = `Bearer ${response.data}`;
+        p.login(token);
+        localStorage.setItem(Constant.AUTHORIZATION, token);
+        // TODO: Need a library
         p.handleClose();
         setTimeout(() => {
           p.hide();

@@ -18,6 +18,8 @@ import MenuButton from "./menuButton";
 import { style } from "./style";
 
 interface IProps {
+  logout: () => any;
+  token: string;
   setPostPage: (d: any) => any;
   showProgressBar: boolean;
 }
@@ -30,15 +32,19 @@ const Header: React.FC<IProps> = (props) => {
   const handleClose = () => setOpen(false);
 
   const loadPostPage = () => new PostApi().getByPage(undefined, undefined, {
-    headers: { Authorization: localStorage.getItem(Constant.AUTHORIZATION) },
+    headers: { Authorization: props.token },
   })
-    .then(response => props.setPostPage(response));
+    .then((response) => props.setPostPage(response));
 
-  const content = localStorage.getItem(Constant.AUTHORIZATION)
+  // TODO: Need a library
+  // TODO: Remove it from Localstorage as well
+  const logout = () => { localStorage.removeItem(Constant.AUTHORIZATION); props.logout(); };
+
+  const content = props.token
     ? <div>
       <Button color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></Button>
       <Button color="inherit"><FaceIcon className={classes.icon} /></Button>
-      <Button color="inherit"><PowerSettingsNewIcon className={classes.icon} /></Button>
+      <Button color="inherit" onClick={logout}><PowerSettingsNewIcon className={classes.icon} /></Button>
     </div>
     : <Button color="inherit" onClick={handleClickOpen}><ExitToAppIcon className={classes.icon} /></Button>
     ;
