@@ -48,9 +48,12 @@ const Login: React.FC<IProps> = (p) => {
   // 1. submit login request
   const submit = () => email && password && !invalidEmail && new UserApi().login(1, password)
     .then(response => {
-      // 2. show progress circle in login screen
+      // 2. Clean form value
+      setEmail("");
+      setPassword("");
+      // 3. show progress circle in login screen
       p.show();
-      // 3. set corresponding result
+      // 4. set corresponding result
       setTimeout(() => {
         // TODO: persist to localstorage
         const token = `Bearer ${response.data}`;
