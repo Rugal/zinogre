@@ -36,12 +36,16 @@ const Login: React.FC<IProps> = (p) => {
   const [errorMessage, setErrorMessage] = useState("Login with your credential");
   const [invalidEmail, setInvalidEmail] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const validateInput = (input: string) => {
     setInvalidEmail(input ? !validateEmail(input) : false);
+    setEmail(input);
   };
 
   // 1. submit login request
-  const submit = () => new UserApi().login(1, "0")
+  const submit = () => email && password && !invalidEmail && new UserApi().login(1, "0")
     .then(response => {
       // 2. show progress circle in login screen
       p.show();
@@ -68,17 +72,25 @@ const Login: React.FC<IProps> = (p) => {
         <form className={classes.root} autoComplete="off">
           <FormControl>
             <TextField
-              id="email"
-              label="EMAIL"
               color="primary"
-              required={true}
-              helperText={invalidEmail ? "Invalid email" : undefined}
               error={invalidEmail}
+              id="email"
+              helperText={invalidEmail ? "Invalid email" : undefined}
+              label="EMAIL"
               onChange={({ target }) => validateInput(target.value)}
+              required={true}
+              value={email}
             />
           </FormControl>
           <FormControl>
-            <TextField id="password" label="PASSWORD" color="secondary" required={true} />
+            <TextField
+              color="secondary"
+              id="password"
+              label="PASSWORD"
+              onChange={({ target }) => setPassword(target.value)}
+              required={true}
+              value={password}
+            />
           </FormControl>
         </form>
       </DialogContent>
