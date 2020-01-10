@@ -22,14 +22,23 @@ interface IProps {
   showProgressBar: boolean;
 }
 
+const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 const transparency = (showProgressBar: boolean = false) => showProgressBar
   ? { style: { backgroundColor: 'transparent', boxShadow: 'none', } }
   : undefined;
+
+const validateEmail = (email: string) => re.test(email);
 
 const Login: React.FC<IProps> = (p) => {
   const classes = style();
 
   const [errorMessage, setErrorMessage] = useState("Login with your credential");
+  const [invalidEmail, setInvalidEmail] = useState(false);
+
+  const validateInput = (input: string) => {
+    setInvalidEmail(input ? !validateEmail(input) : false);
+  };
 
   // 1. submit login request
   const submit = () => new UserApi().login(1, "0")
@@ -58,7 +67,15 @@ const Login: React.FC<IProps> = (p) => {
       <DialogContent>
         <form className={classes.root} autoComplete="off">
           <FormControl>
-            <TextField id="email" label="EMAIL" color="primary" required={true} />
+            <TextField
+              id="email"
+              label="EMAIL"
+              color="primary"
+              required={true}
+              helperText={invalidEmail ? "Invalid email" : undefined}
+              error={invalidEmail}
+              onChange={({ target }) => validateInput(target.value)}
+            />
           </FormControl>
           <FormControl>
             <TextField id="password" label="PASSWORD" color="secondary" required={true} />
