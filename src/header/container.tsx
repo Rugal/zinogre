@@ -4,6 +4,7 @@ import { GET_POST_PAGE } from "../store/post";
 import Header from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
+  showProgressBar: state.system.showProgressBar,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

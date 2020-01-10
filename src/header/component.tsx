@@ -1,6 +1,7 @@
 import {
   AppBar,
   Button,
+  LinearProgress,
   Toolbar,
   Typography,
 } from "@material-ui/core";
@@ -19,6 +20,7 @@ import { style } from "./style";
 
 interface IProps {
   setPostPage: (d: any) => any;
+  showProgressBar: boolean;
 }
 
 const Header: React.FC<IProps> = (props) => {
@@ -29,9 +31,6 @@ const Header: React.FC<IProps> = (props) => {
     setOpen(true);
   };
   const handleClose = () => {
-    // 1. submit login request
-    // 2. show progress circle in login screen
-    // 3. set corresponding result
     setOpen(false);
   };
 
@@ -59,6 +58,7 @@ const Header: React.FC<IProps> = (props) => {
         <MenuButton />
       </Toolbar>
       <Login open={open} handleClose={handleClose} />
+      {props.showProgressBar ? <LinearProgress color="secondary" /> : <div />}
     </AppBar >
   );
 };
