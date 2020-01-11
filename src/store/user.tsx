@@ -2,7 +2,7 @@ export const POST_USER_TOKEN = "user/token/POST";
 export const DELETE_USER_TOKEN = "user/token/DELETE";
 
 const initialState = {
-  token: "Bearer a",
+  token: undefined,
 };
 
 export default function UserReducer(state = initialState, action: any) {

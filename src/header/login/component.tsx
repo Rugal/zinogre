@@ -115,7 +115,11 @@ const Login: React.FC<IProps> = (p) => {
     ;
 
   return (
-    <Dialog open={p.open} aria-labelledby="form-dialog-title" PaperProps={transparency(p.showProgressBar)}>
+    <Dialog
+      aria-labelledby="form-dialog-title"
+      open={p.open}
+      PaperProps={transparency(p.showProgressBar)}
+    >
       {content}
     </Dialog >
   );
