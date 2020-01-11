@@ -59,11 +59,7 @@ const Login: React.FC<IProps> = (p) => {
       p.show();
       // 4. set corresponding result
       setTimeout(() => {
-        // TODO: persist to localstorage
-        const token = `Bearer ${response.data}`;
-        p.login(token);
-        localStorage.setItem(Constant.AUTHORIZATION, token);
-        // TODO: Need a library
+        p.login(`Bearer ${response.data}`);
         p.handleClose();
         setTimeout(() => {
           p.hide();

@@ -36,9 +36,7 @@ const Header: React.FC<IProps> = (props) => {
   })
     .then((response) => props.setPostPage(response));
 
-  // TODO: Need a library
-  // TODO: Remove it from Localstorage as well
-  const logout = () => { localStorage.removeItem(Constant.AUTHORIZATION); props.logout(); };
+  const logout = () => props.logout();
 
   const content = props.token
     ? <div>
