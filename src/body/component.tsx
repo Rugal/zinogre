@@ -1,6 +1,7 @@
 import {
   Container,
 } from "@material-ui/core";
+import Pagination from "material-ui-flat-pagination";
 import React from "react";
 
 import { PostPage } from "../openapi";
@@ -40,6 +41,12 @@ const Body: React.FC<IProps> = (props) => {
         <div className={classes.root}>
           {panelsData}
         </div>
+        <Pagination
+          limit={10}
+          offset={0}
+          total={100}
+          onClick={undefined}
+        />
       </Container>
     </ScreenBody >
   );
