@@ -3,7 +3,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import GetAppIcon from '@material-ui/icons/GetApp';
+import GetAppIcon from "@material-ui/icons/GetApp";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -17,6 +17,7 @@ interface IProps {
   name: string;
   panel: IPanel;
   pid: number;
+  token: string;
 }
 
 const Panel: React.FC<IProps> = (p: IProps) => {
@@ -24,15 +25,13 @@ const Panel: React.FC<IProps> = (p: IProps) => {
   const { panel } = p;
 
   const download = () => new TorrentApi().download(p.pid, {
+    headers: { Authorization: p.token },
     responseType: "arraybuffer", // this is very important
-    headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdXRoZW50aWNhdGlvbiIsImlzcyI6InB0IiwiZXhwIjoxNTc4NjYzODM5LCJ1aWQiOjF9.qTqmXI5m2EJ-aacEd_m9LiEFLor_pAxUwbA1Bg3ypCM"
-    }
   })
     .then(({ data }) => {
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = window.URL.createObjectURL(new Blob([data]));
-      link.download = `${panel.subtitle}.torrent`; //any other extension
+      link.download = `${panel.subtitle}.torrent`; // any other extension
       document.body.appendChild(link);
       link.click();
       link.remove();

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { POST_PROGRASS_BAR, DELETE_PROGRASS_BAR } from "../../store/system";
+import { DELETE_PROGRASS_BAR, POST_PROGRASS_BAR } from "../../store/system";
 import { DELETE_USER_TOKEN } from "../../store/user";
 import Logout from "./component";
 

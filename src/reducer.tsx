@@ -1,7 +1,7 @@
 import axios from "axios";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import axiosMiddleware from "redux-axios-middleware";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { PostReducer, SystemReducer, UserReducer } from "./store";
@@ -14,8 +14,8 @@ const client = axios.create({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["system", "user"] // only navigation will be persisted
-}
+  whitelist: ["system", "user"], // only navigation will be persisted
+};
 
 const rootReducer = combineReducers({
   post: PostReducer,
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(persistedReducer, applyMiddleware(axiosMiddleware(client)))
-export const persistor = persistStore(store)
+export const store = createStore(persistedReducer, applyMiddleware(axiosMiddleware(client)));
+export const persistor = persistStore(store);

@@ -1,3 +1,3 @@
-import Panel from "./component";
+import Panel from "./container";
 
 export default Panel;

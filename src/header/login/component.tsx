@@ -47,8 +47,8 @@ const Login: React.FC<IProps> = (p) => {
   };
 
   // 1. submit login request
-  const submit = () => email && password && !invalidEmail && new UserApi().login(1, password)
-    .then(response => {
+  const submit = () => email && password && !invalidEmail && new UserApi().loginByEmail(email, password)
+    .then((response) => {
       // 2. Clean form value
       resetForm();
       // 3. show progress circle in login screen
@@ -61,12 +61,16 @@ const Login: React.FC<IProps> = (p) => {
           p.hide();
         }, 200);
       }, 2000);
-    }).catch(error => {
+    }).catch((error) => {
       // prompt error message in login dialog
       if (error.response.status === 401) {
         setErrorMessage("User Credential Mismatch");
       }
     });
+
+  const validate = ({ target }: any) => validateInput(target.value);
+  const typePassword = ({ target }: any) => setPassword(target.value);
+  const cancel = () => { p.handleClose(); resetForm(); };
 
   const content = p.showProgressBar
     ? <CircularProgress />
@@ -81,7 +85,7 @@ const Login: React.FC<IProps> = (p) => {
               id="email"
               helperText={invalidEmail ? "Invalid email" : undefined}
               label="EMAIL"
-              onChange={({ target }) => validateInput(target.value)}
+              onChange={validate}
               required={true}
               value={email}
             />
@@ -91,7 +95,7 @@ const Login: React.FC<IProps> = (p) => {
               color="secondary"
               id="password"
               label="PASSWORD"
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={typePassword}
               required={true}
               type="password"
               value={password}
@@ -103,7 +107,7 @@ const Login: React.FC<IProps> = (p) => {
         <Button onClick={submit} color="primary">
           Login
           </Button>
-        <Button onClick={() => { p.handleClose(); resetForm(); }} color="secondary">
+        <Button onClick={cancel} color="secondary">
           Cancel
           </Button>
       </DialogActions>
