@@ -10,9 +10,9 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 
-import { style } from "./style";
 import { UserApi } from "../../openapi";
-import Constant from "../../constant";
+import { transparency } from "../common";
+import { style } from "./style";
 
 interface IProps {
   handleClose: () => any;
@@ -24,10 +24,6 @@ interface IProps {
 }
 
 const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const transparency = (showProgressBar: boolean = false) => showProgressBar
-  ? { style: { backgroundColor: 'transparent', boxShadow: 'none', } }
-  : undefined;
 
 const validateEmail = (email: string) => re.test(email);
 
