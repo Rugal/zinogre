@@ -11,7 +11,7 @@ const initialPost: Post = {
 
 const initialPostPage: PostPage = {
   index: 0,
-  items: [initialPost],
+  items: [initialPost, initialPost, initialPost, initialPost, initialPost],
   size: 20,
   total: 1,
 };

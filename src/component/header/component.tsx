@@ -8,7 +8,7 @@ import {
 import AllInboxIcon from "@material-ui/icons/AllInbox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FaceIcon from "@material-ui/icons/Face";
-import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from "@material-ui/icons/Home";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";

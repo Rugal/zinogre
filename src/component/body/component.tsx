@@ -12,7 +12,7 @@ interface IProps {
 const Body: React.FC<IProps> = (props) => {
   return (
     <ScreenBody>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         {props.children}
       </Container>
     </ScreenBody >

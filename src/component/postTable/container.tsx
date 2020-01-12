@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import Panel from "./component";
+import PostTable from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
   token: state.user.token,
@@ -9,4 +9,4 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 const mapDispatchToProps = () => ({
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Panel);
+export default connect(mapStateToProps, mapDispatchToProps)(PostTable);
