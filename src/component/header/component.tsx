@@ -8,6 +8,7 @@ import {
 import AllInboxIcon from "@material-ui/icons/AllInbox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FaceIcon from "@material-ui/icons/Face";
+import HomeIcon from '@material-ui/icons/Home';
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -56,7 +57,11 @@ const Header: React.FC<IProps> = (props) => {
   return (
     <AppBar position="static" >
       <Toolbar>
-        <Typography variant="h6" className={classes.title}>Private Torrent</Typography>
+        <Typography variant="h6" className={classes.title}>
+          <Link to="/" className={classes.link}>
+            <Button color="inherit" onClick={loadPostPage}><HomeIcon className={classes.icon} /></Button>
+          </Link>
+        </Typography>
         {content}
       </Toolbar>
       <Login open={openLogin} handleClose={onClickCloseLogin} />

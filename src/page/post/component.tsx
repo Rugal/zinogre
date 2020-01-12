@@ -9,6 +9,9 @@ interface IProps {
   token: string;
 }
 
+/*
+  Post page, list of post and torrent.
+ */
 const Post: React.FC<IProps> = (props) => {
 
   const classes = style();

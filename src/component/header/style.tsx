@@ -15,13 +15,11 @@ export const style = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
-
     link: {
       color: "inherit",
       cursor: "auto",
       textDecoration: "inherit",
     },
-
     title: {
       flexGrow: 1,
     },
