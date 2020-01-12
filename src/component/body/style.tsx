@@ -1,8 +1,3 @@
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from "@material-ui/core";
 // eslint-disable-next-line
 import React from "react";
 import Style from "styled-components";
@@ -21,12 +16,3 @@ export const ScreenBody = Style.div`
   margin-top: 64px;
   z-index: -1;
 `;
-
-export const style = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      marginTop: "128px",
-      width: "100%",
-    },
-  }),
-);

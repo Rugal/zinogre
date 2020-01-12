@@ -10,11 +10,11 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FaceIcon from "@material-ui/icons/Face";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { PostApi } from "../openapi";
+import { PostApi } from "../../openapi";
 import Login from "./login";
 import Logout from "./logout";
-import MenuButton from "./menuButton";
 import { style } from "./style";
 
 interface IProps {
@@ -41,8 +41,12 @@ const Header: React.FC<IProps> = (props) => {
   const onClickCloseLogin = () => setOpenLogin(false);
   const content = props.token
     ? <div>
-      <Button color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></Button>
-      <Button color="inherit"><FaceIcon className={classes.icon} /></Button>
+      <Link to="/post" className={classes.link}>
+        <Button color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></Button>
+      </Link>
+      <Link to="/user" className={classes.link}>
+        <Button color="inherit"><FaceIcon className={classes.icon} /></Button>
+      </Link>
       <Button color="inherit" onClick={onClickOpenLogout}>
         <PowerSettingsNewIcon className={classes.icon} />
       </Button>
@@ -54,7 +58,6 @@ const Header: React.FC<IProps> = (props) => {
       <Toolbar>
         <Typography variant="h6" className={classes.title}>Private Torrent</Typography>
         {content}
-        <MenuButton />
       </Toolbar>
       <Login open={openLogin} handleClose={onClickCloseLogin} />
       <Logout open={openLogout} handleClose={onClickCloseLogout} />

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import Body from "./component";
+import Post from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
   postPage: state.post.postPage,
@@ -9,4 +9,4 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Body);
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

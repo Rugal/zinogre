@@ -1,19 +1,16 @@
-import {
-  Container,
-} from "@material-ui/core";
-import Pagination from "material-ui-flat-pagination";
 import React from "react";
 
-import { PostPage } from "../openapi";
-import Panel from "./panel";
-import { ScreenBody, style } from "./style";
+import Panel from "../../component/panel";
+import { PostPage } from "../../openapi";
+import { style } from "./style";
 
 interface IProps {
   postPage: PostPage;
   token: string;
 }
 
-const Body: React.FC<IProps> = (props) => {
+const Post: React.FC<IProps> = (props) => {
+
   const classes = style();
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -36,20 +33,9 @@ const Body: React.FC<IProps> = (props) => {
     ;
 
   return (
-    <ScreenBody>
-      <Container maxWidth="md">
-        <div className={classes.root}>
-          {panelsData}
-        </div>
-        <Pagination
-          limit={10}
-          offset={0}
-          total={100}
-          onClick={undefined}
-        />
-      </Container>
-    </ScreenBody >
+    <div className={classes.root}>
+      {panelsData}
+    </div>
   );
 };
-
-export default Body;
+export default Post;

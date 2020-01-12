@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
-import { GET_POST_PAGE } from "../store/post";
-import { DELETE_USER_TOKEN } from "../store/user";
+import { GET_POST_PAGE } from "../../store/post";
+import { DELETE_USER_TOKEN } from "../../store/user";
 import Header from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
