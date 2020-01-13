@@ -80,6 +80,7 @@ const Login: React.FC<IProps> = (p) => {
         <form className={classes.root} autoComplete="off">
           <FormControl>
             <TextField
+              autoFocus={true}
               color="primary"
               error={invalidEmail}
               id="email"

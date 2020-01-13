@@ -1,16 +1,16 @@
 import React from "react";
 
 import PostTable from "../../component/postTable";
-import { PostPage } from "../../openapi";
+import { PostPageDto } from "../../openapi";
 
 interface IProps {
-  postPage: PostPage;
+  postPage: PostPageDto;
 }
 
-const Post: React.FC<IProps> = (p: IProps) => {
+const PostPage: React.FC<IProps> = (p: IProps) => {
   return (
     <PostTable postPage={p.postPage} />
   );
 };
 
-export default Post;
+export default PostPage;

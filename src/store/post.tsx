@@ -1,15 +1,15 @@
-import { Post, PostPage } from "../openapi";
+import { PostDto, PostPageDto } from "../openapi";
 
 export const GET_POST_PAGE = "post/page/GET";
 
-const initialPost: Post = {
+const initialPost: PostDto = {
   content: "Enjoy!",
   hash: "Welcome to Rugal Private Torrent",
   pid: -1,
   title: "Welcome",
 };
 
-const initialPostPage: PostPage = {
+const initialPostPage: PostPageDto = {
   index: 0,
   items: [initialPost, initialPost, initialPost, initialPost, initialPost],
   size: 20,

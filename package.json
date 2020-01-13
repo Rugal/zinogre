@@ -47,7 +47,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.tsx'",
     "lint:fix": "yarn lint --fix",
     "server": "lite-server -c lite-server.json",
-    "openapi": "openapi-generator generate -i ../glavenus/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/openapi",
+    "openapi": "openapi-generator generate -i ../glavenus/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/openapi --model-name-suffix Dto",
     "mock": "prism mock ../glavenus/configuration/openapi/contract.yml"
   },
   "eslintConfig": {

@@ -13,7 +13,7 @@ import {
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import React from "react";
 
-import { Post, PostPage, TorrentApi } from "../../openapi/api";
+import { PostDto, PostPageDto, TorrentApi } from "../../openapi/api";
 import { style } from "./style";
 
 interface IColumn {
@@ -32,7 +32,7 @@ const columns: IColumn[] = [
 ];
 
 interface IProps {
-  postPage: PostPage;
+  postPage: PostPageDto;
   token: string;
 }
 
@@ -52,7 +52,7 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
 
   const { postPage } = p;
 
-  const download = (post: Post) => new TorrentApi().download(post.pid, {
+  const download = (post: PostDto) => new TorrentApi().download(post.pid, {
     headers: { Authorization: p.token },
     responseType: "arraybuffer", // this is very important
   })
@@ -74,12 +74,12 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
       {column.label}
     </TableCell>
   ));
-  const tableRow = (row: Post, column: IColumn) => (
+  const tableRow = (row: PostDto, column: IColumn) => (
     <TableCell key={column.id} align={column.align}>
       {row[column.id]}
     </TableCell>
   );
-  const tableBody = p.postPage.items.map((row: Post, i) =>
+  const tableBody = p.postPage.items.map((row: PostDto, i) =>
     <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
       {columns.map((column) => tableRow(row, column))}
       <TableCell>
@@ -95,7 +95,7 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
           <TableHead>
             <TableRow>
               {tableHeader}
-              <TableCell>Torrent</TableCell>
+              <TableCell>torrent</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
