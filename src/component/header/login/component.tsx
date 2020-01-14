@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 
-import { UserApi } from "../../../openapi";
+import { UserApi } from "../../../generated/openapi";
 import { transparency } from "../common";
 import { style } from "./style";
 

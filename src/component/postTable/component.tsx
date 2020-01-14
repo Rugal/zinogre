@@ -12,8 +12,9 @@ import {
 } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import React from "react";
+import { Link } from "react-router-dom";
 
-import { PostDto, PostPageDto, TorrentApi } from "../../openapi/api";
+import { PostDto, PostPageDto, TorrentApi } from "../../generated/openapi";
 import { style } from "./style";
 
 interface IColumn {
@@ -21,11 +22,12 @@ interface IColumn {
   label: string;
   minWidth?: number;
   align?: "right";
+  link: boolean;
 }
 
 const columns: IColumn[] = [
-  { id: "pid", label: "id", minWidth: 50 },
-  { id: "title", label: "title", minWidth: 100 },
+  { id: "pid", label: "id", minWidth: 50, link: true },
+  { id: "title", label: "title", minWidth: 100, link: false },
   // { id: "author", label: "author", minWidth: 170, align: "right" },
   // { id: "tag", label: "tag", minWidth: 170, align: "right" },
   // { id: "torrent", label: "torrent", minWidth: 170, align: "right" },
@@ -74,14 +76,17 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
       {column.label}
     </TableCell>
   ));
-  const tableRow = (row: PostDto, column: IColumn) => (
+  const tableCell = (row: PostDto, column: IColumn) => (
     <TableCell key={column.id} align={column.align}>
-      {row[column.id]}
+      {column.link
+        ? <Link to={`/post/${row[column.id]}`} >{row[column.id]}</Link>
+        : row[column.id]
+      }
     </TableCell>
   );
   const tableBody = p.postPage.items.map((row: PostDto, i) =>
     <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
-      {columns.map((column) => tableRow(row, column))}
+      {columns.map((column) => tableCell(row, column))}
       <TableCell>
         <Button onClick={() => download(row)}><CloudDownloadIcon /></Button>
       </TableCell>

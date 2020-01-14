@@ -1,6 +1,9 @@
-import { PostDto, PostPageDto } from "../openapi";
+import { PostDto, PostPageDto } from "../generated/openapi";
 
 export const GET_POST_PAGE = "post/page/GET";
+export const GET_POST = "post/GET";
+export const GET_POST_SUCCESS = "post/GET_SUCCESS";
+export const GET_POST_FAIL = "post/GET_FAIL";
 
 const initialPost: PostDto = {
   content: "Enjoy!",
@@ -17,6 +20,7 @@ const initialPostPage: PostPageDto = {
 };
 
 const initialState = {
+  post: undefined,
   postPage: initialPostPage,
 };
 

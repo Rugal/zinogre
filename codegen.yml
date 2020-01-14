@@ -1,0 +1,12 @@
+overwrite: true
+schema: "../glavenus/src/main/resources/graphql/query.graphqls"
+#documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql/index.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

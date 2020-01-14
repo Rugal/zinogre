@@ -1,3 +1,5 @@
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -7,10 +9,16 @@ import App from "./app";
 import { persistor, store } from "./reducer";
 import * as serviceWorker from "./serviceWorker";
 
+const client = new ApolloClient({
+  uri: `${process.env.REACT_APP_HOST}/graphql`,
+});
+
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </PersistGate>
   </Provider>,
   document.getElementById("root"),

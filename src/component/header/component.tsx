@@ -1,6 +1,6 @@
 import {
   AppBar,
-  Button,
+  IconButton,
   LinearProgress,
   Toolbar,
   Typography,
@@ -13,7 +13,7 @@ import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { PostApi } from "../../openapi";
+import { PostApi } from "../../generated/openapi";
 import Login from "./login";
 import Logout from "./logout";
 import { style } from "./style";
@@ -43,30 +43,30 @@ const Header: React.FC<IProps> = (props) => {
   const content = props.token
     ? <div>
       <Link to="/post" className={classes.link}>
-        <Button color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></Button>
+        <IconButton color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></IconButton>
       </Link>
       <Link to="/user" className={classes.link}>
-        <Button color="inherit"><FaceIcon className={classes.icon} /></Button>
+        <IconButton color="inherit"><FaceIcon className={classes.icon} /></IconButton>
       </Link>
-      <Button color="inherit" onClick={onClickOpenLogout}>
+      <IconButton color="inherit" onClick={onClickOpenLogout}>
         <PowerSettingsNewIcon className={classes.icon} />
-      </Button>
+      </IconButton>
     </div>
-    : <Button color="inherit" onClick={onClickOpenLogin}><ExitToAppIcon className={classes.icon} /></Button>
+    : <IconButton color="inherit" onClick={onClickOpenLogin}><ExitToAppIcon className={classes.icon} /></IconButton>
     ;
   return (
     <AppBar position="static" >
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           <Link to="/" className={classes.link}>
-            <Button color="inherit" onClick={loadPostPage}><HomeIcon className={classes.icon} /></Button>
+            <IconButton color="inherit" onClick={loadPostPage}><HomeIcon className={classes.icon} /></IconButton>
           </Link>
         </Typography>
         {content}
       </Toolbar>
       <Login open={openLogin} handleClose={onClickCloseLogin} />
       <Logout open={openLogout} handleClose={onClickCloseLogout} />
-      {props.showProgressBar ? <LinearProgress color="secondary" /> : <div />}
+      {props.showProgressBar ? <LinearProgress color="secondary" /> : null}
     </AppBar>
   );
 };

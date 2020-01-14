@@ -1,7 +1,7 @@
 import React from "react";
 
 import PostTable from "../../component/postTable";
-import { PostPageDto } from "../../openapi";
+import { PostPageDto } from "../../generated/openapi";
 
 interface IProps {
   postPage: PostPageDto;

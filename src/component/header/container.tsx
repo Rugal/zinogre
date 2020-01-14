@@ -10,7 +10,6 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  logout: () => dispatch({ type: DELETE_USER_TOKEN }),
   setPostPage: (response: any) => dispatch({ type: GET_POST_PAGE, body: response.data }),
 });
 
