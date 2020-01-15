@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 
-import { UserApi } from "../../../generated/openapi";
+import { userApi } from "../../../app/request";
 import { transparency } from "../common";
 import { style } from "./style";
 
@@ -23,7 +23,7 @@ interface IProps {
   showProgressBar: boolean;
 }
 
-const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const validateEmail = (email: string) => re.test(email);
 
@@ -47,7 +47,7 @@ const Login: React.FC<IProps> = (p) => {
   };
 
   // 1. submit login request
-  const submit = () => email && password && !invalidEmail && new UserApi().loginByEmail(email, password)
+  const submit = () => email && password && !invalidEmail && userApi.loginByEmail(email, password)
     .then((response) => {
       // 2. Clean form value
       resetForm();
@@ -60,7 +60,7 @@ const Login: React.FC<IProps> = (p) => {
         setTimeout(() => {
           p.hide();
         }, 200);
-      }, 2000);
+      }, 1000);
     }).catch((error) => {
       // prompt error message in login dialog
       if (error.response.status === 401) {

@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 import { Post as IPost } from "../../generated/graphql";
 
-
 interface IProps {
   post: any;
 }
@@ -37,10 +36,6 @@ const Post: React.FC<IProps> = (p: IProps) => {
   const { pid } = useParams();
 
   const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
-
-  if (data) {
-    console.log(data);
-  }
 
   return (
     <div>

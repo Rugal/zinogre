@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React from "react";
 import Style from "styled-components";
 

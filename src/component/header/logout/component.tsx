@@ -37,7 +37,7 @@ const Logout: React.FC<IProps> = (p) => {
       setTimeout(() => {
         p.hide();
       }, 200);
-    }, 2000);
+    }, 1000);
   };
 
   const content = p.showProgressBar

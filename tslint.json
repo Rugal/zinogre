@@ -7,5 +7,10 @@
     "jsx-wrap-multiline": false,
     "no-submodule-imports": false,
     "no-implicit-dependencies": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "src/generated/**/*.tsx"
+    ]
   }
 }
