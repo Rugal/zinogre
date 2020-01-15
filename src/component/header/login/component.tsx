@@ -74,7 +74,7 @@ const Login: React.FC<IProps> = (p) => {
 
   const content = p.showProgressBar
     ? <CircularProgress />
-    : <div>
+    : <React.Fragment>
       <DialogTitle id="form-dialog-title">{errorMessage}</DialogTitle>
       <DialogContent>
         <form className={classes.root} autoComplete="off">
@@ -112,7 +112,7 @@ const Login: React.FC<IProps> = (p) => {
           Cancel
           </Button>
       </DialogActions>
-    </div>
+    </React.Fragment>
     ;
 
   return (

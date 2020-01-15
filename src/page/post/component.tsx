@@ -1,9 +1,14 @@
 import { useQuery } from "@apollo/react-hooks";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
+import withStyles from "@material-ui/styles/withStyles";
 import gql from "graphql-tag";
-import React from "react";
+import React, { Component } from "react";
 import { useParams } from "react-router-dom";
 
+import CardItem from "../../component/cardItem";
 import { Post as IPost } from "../../generated/graphql";
+import { style } from "./style";
 
 interface IProps {
   post: any;
@@ -33,14 +38,22 @@ const GET_POST = gql`
   User page, profile information.
  */
 const Post: React.FC<IProps> = (p: IProps) => {
-  const { pid } = useParams();
+  // const { pid } = useParams();
+  const classes = style();
 
-  const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
+  // const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
 
   return (
-    <div>
-      Post {pid}
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Grid container={true} justify="center" className={classes.root}>
+        <Grid spacing={10} alignItems="center" justify="center" container={true} className={classes.grid}>
+          <Grid item={true} xs={12}>
+            <CardItem />
+          </Grid>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
 export default Post;

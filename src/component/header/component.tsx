@@ -41,7 +41,7 @@ const Header: React.FC<IProps> = (props) => {
   const onClickCloseLogout = () => setOpenLogout(false);
   const onClickCloseLogin = () => setOpenLogin(false);
   const content = props.token
-    ? <div>
+    ? <React.Fragment>
       <Link to="/post" className={classes.link}>
         <IconButton color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></IconButton>
       </Link>
@@ -51,7 +51,7 @@ const Header: React.FC<IProps> = (props) => {
       <IconButton color="inherit" onClick={onClickOpenLogout}>
         <PowerSettingsNewIcon className={classes.icon} />
       </IconButton>
-    </div>
+    </React.Fragment>
     : <IconButton color="inherit" onClick={onClickOpenLogin}><ExitToAppIcon className={classes.icon} /></IconButton>
     ;
   return (

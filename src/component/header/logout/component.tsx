@@ -42,13 +42,13 @@ const Logout: React.FC<IProps> = (p) => {
 
   const content = p.showProgressBar
     ? <CircularProgress />
-    : <div>
+    : <React.Fragment>
       <DialogTitle id="form-dialog-title">Confirmation</DialogTitle>
       <DialogActions>
         <Button color="primary" onClick={p.handleClose}>Cancel</Button>
         <Button color="secondary" onClick={logout}>Confirm</Button>
       </DialogActions>
-    </div>
+    </React.Fragment>
     ;
 
   return (
