@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 
 import CardItem from "../../component/cardItem";
 import ChipList from "../../component/chip";
+import PostContent from "../../component/postContent";
 import { Post as IPost } from "../../generated/graphql";
 import { style } from "./style";
 
@@ -58,9 +59,7 @@ const Post: React.FC<IProps> = (p: IProps) => {
             <ChipList />
           </Grid>
           <Grid item={true} xs={12}>
-            <Paper>
-              Rugal
-            </Paper>
+            <PostContent />
           </Grid>
         </Grid>
       </Grid>
