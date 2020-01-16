@@ -1,4 +1,3 @@
-import React from "react";
 import Style from "styled-components";
 
 import img from "./image/eva.jpg";

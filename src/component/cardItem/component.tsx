@@ -1,12 +1,16 @@
 import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import DescriptionIcon from "@material-ui/icons/Description";
-import React, { Component } from "react";
+import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import React from "react";
 
+import Rate from "../rating";
 import { style } from "./style";
 
 const CardItem: React.FC = () => {
+  const [value, setValue] = React.useState<number | null>(2);
+
   const classes = style();
   return (
     <div>
@@ -14,7 +18,7 @@ const CardItem: React.FC = () => {
         <div className={classes.itemContainer}>
           <div className={classes.avatarContainer}>
             <Avatar className={classes.avatar}>
-              <DescriptionIcon />
+              <CloudDownloadIcon />
             </Avatar>
           </div>
           <div className={classes.baseline}>
@@ -48,8 +52,10 @@ const CardItem: React.FC = () => {
               Rate
               </Typography>
             <Typography variant="h4" gutterBottom={true}>
-              STAR
-              </Typography>
+              <Box component="fieldset" mb={3} borderColor="transparent">
+                <Rate value={value} setValue={setValue} />
+              </Box>
+            </Typography>
           </div>
         </div>
       </Paper>
