@@ -1,3 +1,4 @@
+import { Box, Typography } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Rating from "@material-ui/lab/Rating";
 import React from "react";
@@ -20,13 +21,21 @@ const Rate: React.FC<IProps> = (p) => {
   };
 
   return (
-    <Rating
-      classes={css}
-      value={p.value}
-      icon={<FavoriteIcon fontSize="inherit" />}
-      onChange={handler}
-      precision={1}
-    />
+    <Box className={classes.rating}>
+      <Rating
+        readOnly={true}
+        classes={css}
+        value={p.value}
+        icon={<FavoriteIcon fontSize="inherit" />}
+        onChange={handler}
+        precision={1}
+      />
+      <Box ml={2}>
+        <Typography variant="h4" color="secondary" gutterBottom={false}>
+          {p.value}
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

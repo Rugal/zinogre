@@ -1,12 +1,15 @@
 import { useQuery } from "@apollo/react-hooks";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import withStyles from "@material-ui/styles/withStyles";
+import {
+  CssBaseline,
+  Grid,
+  Paper,
+} from "@material-ui/core";
 import gql from "graphql-tag";
-import React, { Component } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import CardItem from "../../component/cardItem";
+import ChipList from "../../component/chip";
 import { Post as IPost } from "../../generated/graphql";
 import { style } from "./style";
 
@@ -51,9 +54,17 @@ const Post: React.FC<IProps> = (p: IProps) => {
           <Grid item={true} xs={12}>
             <CardItem />
           </Grid>
+          <Grid item={false}>
+            <ChipList />
+          </Grid>
+          <Grid item={true} xs={12}>
+            <Paper>
+              Rugal
+            </Paper>
+          </Grid>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </React.Fragment >
   );
 };
 export default Post;

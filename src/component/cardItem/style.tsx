@@ -43,7 +43,9 @@ export const style = makeStyles((theme: Theme) =>
     },
     inlineRight: {
       alignSelf: "flex-end",
+      height: 110,
       marginLeft: 50,
+      paddingLeft: 100,
       textAlign: "right",
       width: "30%",
       [theme.breakpoints.down("sm")]: {

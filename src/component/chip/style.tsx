@@ -6,15 +6,14 @@ import {
 
 export const style = makeStyles((theme: Theme) =>
   createStyles({
-    iconFilled: {
-      color: "#ff6d75",
+    chip: {
+      margin: theme.spacing(0.5),
     },
-    iconHover: {
-      color: "#ff3d47",
-    },
-    rating: {
-      alignItems: "center",
+    root: {
+      backgroundColor: "transparent",
       display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
     },
   }),
 );
