@@ -1,9 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import {
-  CssBaseline,
-  Grid,
-  Paper,
-} from "@material-ui/core";
+import { CssBaseline, Grid } from "@material-ui/core";
 import gql from "graphql-tag";
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -15,7 +11,7 @@ import { Post as IPost } from "../../generated/graphql";
 import { style } from "./style";
 
 interface IProps {
-  post: any;
+  post: IPost;
 }
 
 interface IPostVars {
@@ -42,7 +38,7 @@ const GET_POST = gql`
   User page, profile information.
  */
 const Post: React.FC<IProps> = (p: IProps) => {
-  // const { pid } = useParams();
+  const { pid } = useParams();
   const classes = style();
 
   // const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
@@ -59,7 +55,7 @@ const Post: React.FC<IProps> = (p: IProps) => {
             <ChipList />
           </Grid>
           <Grid item={true} xs={12}>
-            <PostContent />
+            <PostContent post={p.post} />
           </Grid>
         </Grid>
       </Grid>

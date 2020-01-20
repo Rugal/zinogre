@@ -9,7 +9,9 @@ import EqualizerIcon from "@material-ui/icons/Equalizer";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import TocIcon from "@material-ui/icons/Toc";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
+import { Post as IPost } from "../../generated/graphql";
 import { style } from "./style";
 
 interface ITabPanelProps {
@@ -35,7 +37,11 @@ function TabPanel(props: ITabPanelProps) {
   );
 }
 
-const PostContent: React.FC = () => {
+interface IProps {
+  post: IPost;
+}
+
+const PostContent: React.FC<IProps> = (p) => {
   const classes = style();
   const [value, setValue] = React.useState(0);
 
@@ -57,13 +63,13 @@ const PostContent: React.FC = () => {
         <Tab label="review" icon={<RateReviewIcon />} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <ReactMarkdown source={p.post.content ? p.post.content : ""} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        HERE we need some great statistics diagram by d3 js
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        Here list of reviews
       </TabPanel>
     </Paper>
   );
