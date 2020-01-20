@@ -5,6 +5,18 @@ export const GET_POST = "post/GET";
 export const GET_POST_SUCCESS = "post/GET_SUCCESS";
 export const GET_POST_FAIL = "post/GET_FAIL";
 
+export interface IChip {
+  label: string;
+}
+
+const initialChipData: IChip[] = [
+  { label: "Angular" },
+  { label: "jQuery" },
+  { label: "Polymer" },
+  { label: "React" },
+  { label: "Vue.js" },
+];
+
 const initialPost: PostDto = {
   content: "Enjoy!",
   hash: "Welcome to Rugal Private Torrent",
@@ -14,12 +26,13 @@ const initialPost: PostDto = {
 
 const initialPostPage: PostPageDto = {
   index: 0,
-  items: [initialPost, initialPost, initialPost, initialPost, initialPost],
+  items: [initialPost],
   size: 20,
   total: 1,
 };
 
 const initialState = {
+  chips: initialChipData,
   post: undefined,
   postPage: initialPostPage,
 };
