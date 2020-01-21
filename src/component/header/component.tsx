@@ -1,3 +1,4 @@
+import { useQuery } from "@apollo/react-hooks";
 import {
   AppBar,
   IconButton,
@@ -10,9 +11,11 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FaceIcon from "@material-ui/icons/Face";
 import HomeIcon from "@material-ui/icons/Home";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import gql from "graphql-tag";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { PostPage } from "../../generated/graphql";
 import Login from "./login";
 import Logout from "./logout";
 import { style } from "./style";
@@ -24,12 +27,47 @@ interface IProps {
   showProgressBar: boolean;
 }
 
+interface IPostPageResult {
+  postPage: PostPage;
+}
+
+interface IPostPageVars {
+  index: number;
+  size: number;
+}
+
+const GET_POST_PAGE = gql`
+  query getPostPage($index: Int!, $size: Int!) {
+    postPage(index: $index, size: $size) {
+      size
+      total
+      index
+      items {
+        title
+        content
+        enable
+        hash
+        size
+      }
+    }
+  }
+`;
+
 const Header: React.FC<IProps> = (props) => {
   const classes = style();
 
   const [openLogin, setOpenLogin] = useState(false);
   const [openLogout, setOpenLogout] = useState(false);
 
+  const { data, refetch } = useQuery<IPostPageResult, IPostPageVars>(GET_POST_PAGE,
+    { variables: { index: 0, size: 20 } });
+  if (!data) {
+    return null;
+  }
+  const { postPage } = data;
+  props.setPostPage(postPage);
+
+  const reload = () => refetch();
   const onClickOpenLogout = () => setOpenLogout(true);
   const onClickOpenLogin = () => setOpenLogin(true);
   const onClickCloseLogout = () => setOpenLogout(false);
@@ -37,7 +75,7 @@ const Header: React.FC<IProps> = (props) => {
   const content = props.token
     ? <React.Fragment>
       <Link to="/post" className={classes.link}>
-        <IconButton color="inherit" ><AllInboxIcon className={classes.icon} /></IconButton>
+        <IconButton onClick={reload} color="inherit" ><AllInboxIcon className={classes.icon} /></IconButton>
       </Link>
       <Link to="/user" className={classes.link}>
         <IconButton color="inherit"><FaceIcon className={classes.icon} /></IconButton>

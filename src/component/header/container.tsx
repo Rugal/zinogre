@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 
+import { PostPage } from "../../generated/graphql";
 import { GET_POST_PAGE } from "../../store/post";
 import Header from "./component";
 
@@ -9,7 +10,7 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setPostPage: (response: any) => dispatch({ type: GET_POST_PAGE, body: response.data }),
+  setPostPage: (page: PostPage) => dispatch({ type: GET_POST_PAGE, body: page }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

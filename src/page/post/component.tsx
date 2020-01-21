@@ -42,6 +42,9 @@ const Post: React.FC<IProps> = (p: IProps) => {
   const classes = style();
 
   const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
+  if (!data) {
+    return null;
+  }
 
   return (
     <React.Fragment>
