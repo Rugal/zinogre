@@ -13,7 +13,6 @@ import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { PostApi } from "../../generated/openapi";
 import Login from "./login";
 import Logout from "./logout";
 import { style } from "./style";
@@ -31,11 +30,6 @@ const Header: React.FC<IProps> = (props) => {
   const [openLogin, setOpenLogin] = useState(false);
   const [openLogout, setOpenLogout] = useState(false);
 
-  const loadPostPage = () => new PostApi().getByPage(undefined, undefined, {
-    headers: { Authorization: props.token },
-  })
-    .then((response) => props.setPostPage(response));
-
   const onClickOpenLogout = () => setOpenLogout(true);
   const onClickOpenLogin = () => setOpenLogin(true);
   const onClickCloseLogout = () => setOpenLogout(false);
@@ -43,7 +37,7 @@ const Header: React.FC<IProps> = (props) => {
   const content = props.token
     ? <React.Fragment>
       <Link to="/post" className={classes.link}>
-        <IconButton color="inherit" onClick={loadPostPage}><AllInboxIcon className={classes.icon} /></IconButton>
+        <IconButton color="inherit" ><AllInboxIcon className={classes.icon} /></IconButton>
       </Link>
       <Link to="/user" className={classes.link}>
         <IconButton color="inherit"><FaceIcon className={classes.icon} /></IconButton>
@@ -59,7 +53,7 @@ const Header: React.FC<IProps> = (props) => {
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           <Link to="/" className={classes.link}>
-            <IconButton color="inherit" onClick={loadPostPage}><HomeIcon className={classes.icon} /></IconButton>
+            <IconButton color="inherit"><HomeIcon className={classes.icon} /></IconButton>
           </Link>
         </Typography>
         {content}

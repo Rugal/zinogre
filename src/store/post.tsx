@@ -1,5 +1,4 @@
-import { Post as IPost, User as IUser } from "../generated/graphql";
-import { PostDto, PostPageDto } from "../generated/openapi";
+import { Post, PostPage, User } from "../generated/graphql";
 
 export const GET_POST_PAGE = "post/page/GET";
 export const GET_POST = "post/GET";
@@ -18,23 +17,29 @@ const initialChipData: IChip[] = [
   { label: "Vue.js" },
 ];
 
-const initialUser: IUser = {
-  credit: 0,
+const initialUser: User = {
+  credit: 1024,
   download: 1024,
   uid: -1,
   upload: 1024,
   username: "Rugal",
 };
 
-const initialPost: PostDto = {
-  // author: initialUser,
-  content: "~~Enjoy! something special~~ markdown",
+/* tslint:disable:no-trailing-whitespace */
+const initialPost: Post = {
+  author: initialUser,
+  content: `~~Enjoy! something special~~ markdown  
+  HERE again  
+  multiple  
+  line
+  `,
   hash: "Welcome to Rugal Private Torrent",
   pid: -1,
   title: "Welcome",
 };
+/* tslint:enable:no-trailing-whitespace */
 
-const initialPostPage: PostPageDto = {
+const initialPostPage: PostPage = {
   index: 0,
   items: [initialPost],
   size: 20,

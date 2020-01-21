@@ -40,6 +40,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",
+    "graphql-faker": "^2.0.0-rc.16",
     "graphql-tag": "^2.10.1",
     "lite-server": "^2.5.4",
     "react-markdown": "^4.3.1",
@@ -58,9 +59,11 @@
     "lint": "tslint -c tslint.json 'src/**/*.tsx'",
     "lint:fix": "yarn lint --fix",
     "server": "lite-server -c lite-server.json",
-    "openapi": "openapi-generator generate -i ../glavenus/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/generated/openapi --model-name-suffix Dto",
-    "mock": "prism mock ../glavenus/configuration/openapi/contract.yml",
-    "graphql": "graphql-codegen --config codegen.yml"
+    "openapi:generate": "openapi-generator generate -i ../glavenus/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/generated/openapi --model-name-suffix Dto",
+    "openapi:mock": "prism mock ../glavenus/configuration/openapi/contract.yml",
+    "graphql:generate": "graphql-codegen --config codegen.yml",
+    "graphql:mock": "graphql-faker ../glavenus/src/main/resources/graphql/query.graphqls",
+    "generate": "yarn openapi:generate && yarn graphql:generate"
   },
   "eslintConfig": {
     "extends": "react-app"

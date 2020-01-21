@@ -1,4 +1,4 @@
-/* tslint:disable */
+import { useQuery } from "@apollo/react-hooks";
 import {
   Button,
   Paper,
@@ -11,10 +11,13 @@ import {
   TableRow,
 } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import gql from "graphql-tag";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { PostDto, PostPageDto, TorrentApi } from "../../generated/openapi";
+import { downloadFile } from "../../app/download";
+import { Maybe, Post, PostPage } from "../../generated/graphql";
+import { TorrentApi } from "../../generated/openapi";
 import { style } from "./style";
 
 interface IColumn {
@@ -34,9 +37,34 @@ const columns: IColumn[] = [
 ];
 
 interface IProps {
-  postPage: PostPageDto;
   token: string;
 }
+
+interface IPostPageResult {
+  postPage: PostPage;
+}
+
+interface IPostPageVars {
+  index: number;
+  size: number;
+}
+
+const GET_POST = gql`
+  query getPostPage($index: Int!, $size: Int!) {
+    postPage(index: $index, size: $size) {
+      size
+      total
+      index
+      items {
+        title
+        content
+        enable
+        hash
+        size
+      }
+    }
+  }
+`;
 
 const PostTable: React.FC<IProps> = (p: IProps) => {
   const classes = style();
@@ -52,20 +80,18 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
     setPage(0);
   };
 
-  const { postPage } = p;
+  const { data } = useQuery<IPostPageResult, IPostPageVars>(GET_POST, { variables: { index: 0, size: 20 } });
+  if (!data) {
+    return null;
+  }
 
-  const download = (post: PostDto) => new TorrentApi().download(post.pid, {
+  const { postPage } = data;
+
+  const download = (post: Post) => new TorrentApi().download(post.pid, {
     headers: { Authorization: p.token },
     responseType: "arraybuffer", // this is very important
   })
-    .then(({ data }) => {
-      const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(new Blob([data]));
-      link.download = `${post.hash}.torrent`; // any other extension
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    });
+    .then((response) => downloadFile(`${post.hash}.torrent`, new Blob([response.data])));
 
   const tableHeader = columns.map((column) => (
     <TableCell
@@ -76,22 +102,24 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
       {column.label}
     </TableCell>
   ));
-  const tableCell = (row: PostDto, column: IColumn) => (
+  const t = (row: Post, column: IColumn) => column.link
+    ? <Link to={`/post/${row[column.id]}`} >{row[column.id]}</Link>
+    : row[column.id];
+  const tableCell = (row: Maybe<Post>, column: IColumn) => (
     <TableCell key={column.id} align={column.align}>
-      {column.link
-        ? <Link to={`/post/${row[column.id]}`} >{row[column.id]}</Link>
-        : row[column.id]
-      }
+      {row && t(row, column)}
     </TableCell>
   );
-  const tableBody = p.postPage.items.map((row: PostDto, i) =>
+  /* tslint:disable:jsx-no-lambda */
+  const tableBody = postPage && postPage.items.map((row: Maybe<Post>, i) =>
     <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
       {columns.map((column) => tableCell(row, column))}
       <TableCell>
-        <Button onClick={() => download(row)}><CloudDownloadIcon /></Button>
+        <Button onClick={() => row && download(row)}><CloudDownloadIcon /></Button>
       </TableCell>
     </TableRow>,
   );
+  /* tslint:enable:jsx-no-lambda */
 
   return (
     <Paper className={classes.root}>

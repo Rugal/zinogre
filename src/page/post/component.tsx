@@ -41,7 +41,7 @@ const Post: React.FC<IProps> = (p: IProps) => {
   const { pid } = useParams();
   const classes = style();
 
-  // const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
+  const { data } = useQuery<IPost, IPostVars>(GET_POST, { variables: { pid: pid ? +pid : 0 } });
 
   return (
     <React.Fragment>

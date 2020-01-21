@@ -1,15 +1,15 @@
 import React from "react";
 
 import PostTable from "../../component/postTable";
-import { PostPageDto } from "../../generated/openapi";
+import { PostPage as IPostPage } from "../../generated/graphql";
 
 interface IProps {
-  postPage: PostPageDto;
+  postPage: IPostPage;
 }
 
 const PostPage: React.FC<IProps> = (p: IProps) => {
   return (
-    <PostTable postPage={p.postPage} />
+    <PostTable />
   );
 };
 
