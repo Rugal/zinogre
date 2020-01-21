@@ -20,6 +20,8 @@ const initialChipData: IChip[] = [
 const initialUser: User = {
   credit: 1024,
   download: 1024,
+  email: "test@mail.com",
+  status: "live",
   uid: -1,
   upload: 1024,
   username: "Rugal",
@@ -33,8 +35,11 @@ const initialPost: Post = {
   multiple  
   line
   `,
+  enable: true,
   hash: "Welcome to Rugal Private Torrent",
   pid: -1,
+  size: 123,
+  tags: [],
   title: "Welcome",
 };
 /* tslint:enable:no-trailing-whitespace */
@@ -47,7 +52,7 @@ const initialPostPage: PostPage = {
 };
 
 const initialState = {
-  chips: initialChipData,
+  chips: undefined,
   post: initialPost,
   postPage: initialPostPage,
 };

@@ -1,3 +1,3 @@
-import ChipList from "./container";
+import ChipList from "./component";
 
 export default ChipList;

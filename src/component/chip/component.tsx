@@ -2,20 +2,20 @@ import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import React from "react";
 
-import { IChip } from "../../store/post";
+import { Tag } from "../../generated/graphql";
 import { style } from "./style";
 
 interface IProps {
-  chips: IChip[];
+  tags: Tag[];
 }
 
 const ChipList: React.FC<IProps> = (p) => {
   const classes = style();
 
-  const tags = p.chips.map((data, i) =>
+  const tags = p.tags.map((data, i) =>
     <Chip
       key={i}
-      label={data.label}
+      label={data.name}
       className={classes.chip}
     />,
   );

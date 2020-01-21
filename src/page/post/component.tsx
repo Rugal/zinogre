@@ -7,11 +7,11 @@ import { useParams } from "react-router-dom";
 import CardItem from "../../component/cardItem";
 import ChipList from "../../component/chip";
 import PostContent from "../../component/postContent";
-import { Post as IPost } from "../../generated/graphql";
+import { Post as PostDto } from "../../generated/graphql";
 import { style } from "./style";
 
-interface IProps {
-  post: IPost;
+interface IPost {
+  post: PostDto;
 }
 
 interface IPostVars {
@@ -30,6 +30,10 @@ const GET_POST = gql`
         username
         email
       }
+      tags {
+        tid
+        name
+      }
     }
   }
 `;
@@ -37,7 +41,7 @@ const GET_POST = gql`
 /*
   User page, profile information.
  */
-const Post: React.FC<IProps> = (p: IProps) => {
+const Post: React.FC = () => {
   const { pid } = useParams();
   const classes = style();
 
@@ -55,10 +59,10 @@ const Post: React.FC<IProps> = (p: IProps) => {
             <CardItem />
           </Grid>
           <Grid item={false}>
-            <ChipList />
+            <ChipList tags={data.post.tags} />
           </Grid>
           <Grid item={true} xs={12}>
-            <PostContent post={p.post} />
+            <PostContent post={data.post} />
           </Grid>
         </Grid>
       </Grid>

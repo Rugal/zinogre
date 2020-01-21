@@ -11,7 +11,7 @@ import TocIcon from "@material-ui/icons/Toc";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { Post as IPost } from "../../generated/graphql";
+import { Post as PostDto } from "../../generated/graphql";
 import { style } from "./style";
 
 interface ITabPanelProps {
@@ -38,7 +38,7 @@ function TabPanel(props: ITabPanelProps) {
 }
 
 interface IProps {
-  post: IPost;
+  post: PostDto;
 }
 
 const PostContent: React.FC<IProps> = (p) => {
@@ -63,7 +63,7 @@ const PostContent: React.FC<IProps> = (p) => {
         <Tab label="review" icon={<RateReviewIcon />} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <ReactMarkdown source={p.post.content ? p.post.content : ""} />
+        <ReactMarkdown source={p.post.content} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         HERE we need some great statistics diagram by d3 js
