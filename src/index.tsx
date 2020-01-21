@@ -6,9 +6,10 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./app";
-import { persistor, store } from "./reducer";
 import * as serviceWorker from "./serviceWorker";
+import { persistor, store } from "./store";
 
+// graphql client connection
 const client = new ApolloClient({
   uri: `${process.env.REACT_APP_HOST}/graphql`,
 });

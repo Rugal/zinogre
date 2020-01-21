@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
+import { USER_LOGOUT } from "../../../store";
 import { DELETE_PROGRASS_BAR, POST_PROGRASS_BAR } from "../../../store/system";
-import { DELETE_USER_TOKEN } from "../../../store/user";
 import Logout from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   hide: () => dispatch({ type: DELETE_PROGRASS_BAR }),
-  logout: () => dispatch({ type: DELETE_USER_TOKEN }),
+  logout: () => dispatch({ type: USER_LOGOUT }),
   show: () => dispatch({ type: POST_PROGRASS_BAR }),
 });
 

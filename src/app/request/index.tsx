@@ -1,8 +1,7 @@
 import { PostApi, TorrentApi, UserApi } from "../../generated/openapi";
 import { axiosInstance } from "./interceptor";
 
-const host = process.env.REACT_APP_HOST;
-
-export const userApi = new UserApi(undefined, host, axiosInstance);
-export const torrentApi = new TorrentApi(undefined, host, axiosInstance);
-export const postApi = new PostApi(undefined, host, axiosInstance);
+// openapi client connection
+export const userApi = new UserApi(undefined, undefined, axiosInstance);
+export const torrentApi = new TorrentApi(undefined, undefined, axiosInstance);
+export const postApi = new PostApi(undefined, undefined, axiosInstance);
