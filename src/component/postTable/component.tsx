@@ -25,7 +25,6 @@ interface IColumn {
   label: string;
   minWidth?: number;
   align?: "right";
-  link?: boolean;
 }
 
 const columns: IColumn[] = [

@@ -24,11 +24,12 @@ const GET_POST = gql`
       pid
       hash
       title
+      size
       content
+      createAt
       author {
         uid
         username
-        email
       }
       tags {
         tid

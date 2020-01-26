@@ -1,4 +1,4 @@
-import Avatar from "@material-ui/core/Avatar";
+import { Avatar, Button } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -24,23 +24,24 @@ const CardItem: React.FC<IProps> = (p) => {
   const download = (post: PostDto) => new TorrentApi().download(post.pid, {
     headers: { Authorization: p.token },
     responseType: "arraybuffer", // this is very important
-  })
-    .then((response) => downloadFile(`${post.hash}.torrent`, new Blob([response.data])));
+  }).then((response) => downloadFile(`${post.hash}.torrent`, new Blob([response.data])));
 
   const onClick = () => download(p.post);
+
+  const uppercase: any = { textTransform: "uppercase" };
 
   return (
     <div>
       <Paper className={classes.paper}>
         <div className={classes.itemContainer}>
           <div onClick={onClick} className={classes.avatarContainer}>
-            <Avatar className={classes.avatar}>
+            <Button className={classes.avatar}>
               <CloudDownloadIcon />
-            </Avatar>
+            </Button>
           </div>
           <div className={classes.baseline}>
             <div className={classes.inline}>
-              <Typography style={{ textTransform: "uppercase" }} color="primary" gutterBottom={true}>
+              <Typography style={uppercase} color="primary" gutterBottom={true}>
                 title
                 </Typography>
               <Typography variant="h6" gutterBottom={true}>
@@ -48,7 +49,7 @@ const CardItem: React.FC<IProps> = (p) => {
               </Typography>
             </div>
             <div className={classes.inline}>
-              <Typography style={{ textTransform: "uppercase" }} color="primary" gutterBottom={true}>
+              <Typography style={uppercase} color="primary" gutterBottom={true}>
                 author
                 </Typography>
               <Typography variant="h6" gutterBottom={true}>
@@ -56,16 +57,16 @@ const CardItem: React.FC<IProps> = (p) => {
               </Typography>
             </div>
             <div className={classes.inline}>
-              <Typography style={{ textTransform: "uppercase" }} color="primary" gutterBottom={true}>
+              <Typography style={uppercase} color="primary" gutterBottom={true}>
                 create date
                 </Typography>
               <Typography variant="h6" gutterBottom={true}>
-                {p.post.author.createAt || 1990}
+                {p.post.createAt}
               </Typography>
             </div>
           </div>
           <div className={classes.inlineRight}>
-            <Typography style={{ textTransform: "uppercase" }} color="primary" gutterBottom={true}>
+            <Typography style={uppercase} color="primary" gutterBottom={true}>
               Rate
               </Typography>
             <Typography variant="h4" gutterBottom={true}>
