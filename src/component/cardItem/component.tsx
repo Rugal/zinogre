@@ -27,11 +27,13 @@ const CardItem: React.FC<IProps> = (p) => {
   })
     .then((response) => downloadFile(`${post.hash}.torrent`, new Blob([response.data])));
 
+  const onClick = () => download(p.post);
+
   return (
     <div>
       <Paper className={classes.paper}>
         <div className={classes.itemContainer}>
-          <div onClick={() => download(p.post)} className={classes.avatarContainer}>
+          <div onClick={onClick} className={classes.avatarContainer}>
             <Avatar className={classes.avatar}>
               <CloudDownloadIcon />
             </Avatar>

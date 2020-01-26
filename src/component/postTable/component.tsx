@@ -21,19 +21,20 @@ import { TorrentApi } from "../../generated/openapi";
 import { style } from "./style";
 
 interface IColumn {
-  id: "pid" | "title";
+  id: "pid" | "title" | "author" | "rate" | "create date" | "size";
   label: string;
   minWidth?: number;
   align?: "right";
-  link: boolean;
+  link?: boolean;
 }
 
 const columns: IColumn[] = [
-  { id: "pid", label: "id", minWidth: 50, link: true },
-  { id: "title", label: "title", minWidth: 100, link: false },
-  // { id: "author", label: "author", minWidth: 170, align: "right" },
-  // { id: "tag", label: "tag", minWidth: 170, align: "right" },
-  // { id: "torrent", label: "torrent", minWidth: 170, align: "right" },
+  { id: "pid", label: "id", minWidth: 50 },
+  { id: "title", label: "title", minWidth: 100 },
+  { id: "size", label: "size", minWidth: 20 },
+  { id: "author", label: "author", minWidth: 50 },
+  { id: "rate", label: "rate", minWidth: 20 },
+  { id: "create date", label: "create date", minWidth: 20 },
 ];
 
 interface IProps {
@@ -56,11 +57,15 @@ const GET_POST = gql`
       total
       index
       items {
+        pid
         title
-        content
-        enable
-        hash
         size
+        rate
+        createAt
+        author {
+          uid
+          username
+        }
       }
     }
   }
@@ -90,8 +95,7 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
   const download = (post: Post) => new TorrentApi().download(post.pid, {
     headers: { Authorization: p.token },
     responseType: "arraybuffer", // this is very important
-  })
-    .then((response) => downloadFile(`${post.hash}.torrent`, new Blob([response.data])));
+  }).then((response) => downloadFile(`${post.hash}.torrent`, new Blob([response.data])));
 
   const tableHeader = columns.map((column) => (
     <TableCell
@@ -102,20 +106,28 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
       {column.label}
     </TableCell>
   ));
-  const t = (row: Post, column: IColumn) => column.link
-    ? <Link to={`/post/${row[column.id]}`} >{row[column.id]}</Link>
-    : row[column.id];
-  const tableCell = (row: Maybe<Post>, column: IColumn) => (
-    <TableCell key={column.id} align={column.align}>
-      {row && t(row, column)}
-    </TableCell>
-  );
+
   /* tslint:disable:jsx-no-lambda */
-  const tableBody = postPage && postPage.items.map((row: Maybe<Post>, i) =>
+  const tableBody = postPage && postPage.items.map((row: Post, i) =>
     <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
-      {columns.map((column) => tableCell(row, column))}
       <TableCell>
-        <Button onClick={() => row && download(row)}><CloudDownloadIcon /></Button>
+        <Link to={`/post/${row.pid}`}>{row.pid}</Link>
+        <Button onClick={() => download(row)}><CloudDownloadIcon /></Button>
+      </TableCell>
+      <TableCell>
+        {row.title}
+      </TableCell>
+      <TableCell>
+        {row.size}
+      </TableCell>
+      <TableCell>
+        <Link to={`/user/${row.author.uid}`}>{row.author.username}</Link>
+      </TableCell>
+      <TableCell>
+        {row.rate}
+      </TableCell>
+      <TableCell>
+        {row.createAt}
       </TableCell>
     </TableRow>,
   );
@@ -128,7 +140,6 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
           <TableHead>
             <TableRow>
               {tableHeader}
-              <TableCell>torrent</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -30,6 +30,7 @@ const initialPost: Post = {
   enable: true,
   hash: "Welcome to Rugal Private Torrent",
   pid: -1,
+  rate: 3.5,
   size: 123,
   tags: [],
   title: "Welcome",
