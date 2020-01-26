@@ -9,14 +9,6 @@ export interface IChip {
   label: string;
 }
 
-const initialChipData: IChip[] = [
-  { label: "Angular" },
-  { label: "jQuery" },
-  { label: "Polymer" },
-  { label: "React" },
-  { label: "Vue.js" },
-];
-
 const initialUser: User = {
   credit: 1024,
   download: 1024,

@@ -1,3 +1,3 @@
-import CardItem from "./component";
+import CardItem from "./container";
 
 export default CardItem;

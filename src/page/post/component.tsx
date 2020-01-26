@@ -56,7 +56,7 @@ const Post: React.FC = () => {
       <Grid container={true} justify="center" className={classes.root}>
         <Grid spacing={10} alignItems="center" justify="center" container={true} className={classes.grid}>
           <Grid item={true} xs={12}>
-            <CardItem />
+            <CardItem post={data.post} />
           </Grid>
           <Grid item={false}>
             <ChipList tags={data.post.tags} />
