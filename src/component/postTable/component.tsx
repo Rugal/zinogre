@@ -149,7 +149,7 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
       <TablePagination
         rowsPerPageOptions={[10, 20]} // TODO: Need discussion
         component="div"
-        count={postPage.total * postPage.size} // TODO: Need improvement
+        count={postPage.total * postPage.size}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}

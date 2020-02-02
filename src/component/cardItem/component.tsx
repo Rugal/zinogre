@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { downloadFile } from "../../app/download";
 import { Post as PostDto } from "../../generated/graphql";
@@ -19,8 +20,6 @@ interface IProps {
 }
 
 const CardItem: React.FC<IProps> = (p) => {
-  const [value, setValue] = React.useState<number | null>(2);
-
   const classes = style();
 
   const download = (post: PostDto) => new TorrentApi().download(post.pid, {
@@ -46,7 +45,7 @@ const CardItem: React.FC<IProps> = (p) => {
               <Typography style={uppercase} color="primary" gutterBottom={true}>
                 title
                 </Typography>
-              <Typography variant="h6" gutterBottom={true}>
+              <Typography variant="h5" gutterBottom={true}>
                 {p.post.title}
               </Typography>
             </div>
@@ -55,7 +54,7 @@ const CardItem: React.FC<IProps> = (p) => {
                 author
                 </Typography>
               <Typography variant="h6" gutterBottom={true}>
-                {p.post.author.username}
+                <Link to={`/user/${p.post.author.uid}`}>{p.post.author.username}</Link>
               </Typography>
             </div>
             <div className={classes.inline}>
@@ -71,11 +70,9 @@ const CardItem: React.FC<IProps> = (p) => {
             <Typography style={uppercase} color="primary" gutterBottom={true}>
               Rate
               </Typography>
-            <Typography variant="h4" gutterBottom={true}>
-              <Box component="fieldset" mb={3} borderColor="transparent">
-                <Rate value={p.post.rate} />
-              </Box>
-            </Typography>
+            <Box component="fieldset" mb={3} borderColor="transparent">
+              <Rate value={p.post.rate} />
+            </Box>
           </div>
         </div>
       </Paper>
