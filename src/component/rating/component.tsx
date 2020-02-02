@@ -7,13 +7,13 @@ import { style } from "./style";
 
 interface IProps {
   value: number | null;
-  setValue: (value: number | null) => any;
+  setValue?: (value: number | null) => any;
 }
 
 const Rate: React.FC<IProps> = (p) => {
   const classes = style();
 
-  const handler = (event: React.ChangeEvent<{}>, newValue: number | null) => p.setValue(newValue);
+  const handler = (event: React.ChangeEvent<{}>, newValue: number | null) => p.setValue && p.setValue(newValue);
 
   const css = {
     iconFilled: classes.iconFilled,

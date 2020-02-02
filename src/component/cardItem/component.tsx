@@ -1,7 +1,9 @@
-import { Avatar, Button } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import {
+  Box,
+  Button,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import React from "react";
 
@@ -71,7 +73,7 @@ const CardItem: React.FC<IProps> = (p) => {
               </Typography>
             <Typography variant="h4" gutterBottom={true}>
               <Box component="fieldset" mb={3} borderColor="transparent">
-                <Rate value={value} setValue={setValue} />
+                <Rate value={p.post.rate} />
               </Box>
             </Typography>
           </div>

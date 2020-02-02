@@ -35,6 +35,7 @@ const GET_POST = gql`
         tid
         name
       }
+      rate
     }
   }
 `;

@@ -7,9 +7,7 @@ import {
 export const style = makeStyles((theme: Theme) =>
   createStyles({
     avatar: {
-      backgroundColor: theme.palette.grey["200"],
-      color: theme.palette.text.primary,
-      margin: 10,
+      backgroundColor: "transparent",
     },
     avatarContainer: {
       [theme.breakpoints.down("sm")]: {
