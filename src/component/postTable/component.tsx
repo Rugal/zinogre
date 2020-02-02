@@ -16,8 +16,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { downloadFile } from "../../app/download";
-import { Maybe, Post, PostPage } from "../../generated/graphql";
+import { Post, PostPage } from "../../generated/graphql";
 import { TorrentApi } from "../../generated/openapi";
+import Rate from "../rating";
 import { style } from "./style";
 
 interface IColumn {
@@ -123,7 +124,7 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
         <Link to={`/user/${row.author.uid}`}>{row.author.username}</Link>
       </TableCell>
       <TableCell>
-        {row.rate}
+        <Rate value={row.rate} />
       </TableCell>
       <TableCell>
         {row.createAt}

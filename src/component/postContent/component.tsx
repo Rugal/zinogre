@@ -12,6 +12,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Post as PostDto } from "../../generated/graphql";
+import Review from "../review";
 import { style } from "./style";
 
 interface ITabPanelProps {
@@ -69,7 +70,7 @@ const PostContent: React.FC<IProps> = (p) => {
         HERE we need some great statistics diagram by d3 js
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Here list of reviews
+        <Review />
       </TabPanel>
     </Paper>
   );
