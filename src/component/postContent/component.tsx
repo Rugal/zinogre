@@ -17,15 +17,17 @@ import { style } from "./style";
 
 interface ITabPanelProps {
   children?: React.ReactNode;
+  clazz?: string;
   index: any;
   value: any;
 }
 
 function TabPanel(props: ITabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { clazz, children, value, index, ...other } = props;
 
   return (
     <Typography
+      className={clazz}
       component="div"
       role="tabpanel"
       hidden={value !== index}
@@ -53,6 +55,7 @@ const PostContent: React.FC<IProps> = (p) => {
   return (
     <Paper className={classes.root}>
       <Tabs
+        className={classes.paper}
         value={value}
         onChange={handleChange}
         indicatorColor="primary"
@@ -63,10 +66,10 @@ const PostContent: React.FC<IProps> = (p) => {
         <Tab label="statistics" icon={<EqualizerIcon />} />
         <Tab label="review" icon={<RateReviewIcon />} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} clazz={classes.paper}>
         <ReactMarkdown source={p.post.content} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} clazz={classes.paper}>
         HERE we need some great statistics diagram by d3 js
       </TabPanel>
       <TabPanel value={value} index={2}>

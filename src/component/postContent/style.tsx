@@ -6,7 +6,11 @@ import {
 
 export const style = makeStyles((theme: Theme) =>
   createStyles({
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+    },
     root: {
+      backgroundColor: "transparent",
       flexGrow: 1,
     },
   }),
