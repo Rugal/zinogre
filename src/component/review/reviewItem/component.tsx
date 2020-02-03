@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import { Review } from "../../../generated/graphql";
 import { style } from "./style";
@@ -27,13 +28,11 @@ const ReviewItem: React.FC<IProps> = (p) => {
         aria-controls={`${name}bh-content`}
         id={`${name}bh-header`}
       >
-        <Typography className={classes.heading}>{p.review.author.username}</Typography>
-        <Typography className={classes.secondaryHeading}>{p.review.rate}</Typography>
+        <Typography className={classes.heading}>{p.review.rate}</Typography>
+        <Typography className={classes.secondaryHeading}>{p.review.author.username}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>
-          {p.review.content}
-          </Typography>
+        <ReactMarkdown source={p.review.content} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
