@@ -1,8 +1,6 @@
 import Chart from "chart.js";
 import React, { RefObject, useEffect } from "react";
 
-import { style } from "./style";
-
 const Diagram: React.FC = () => {
   const ref: RefObject<any> = React.createRef();
   useEffect(() => {

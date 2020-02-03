@@ -71,7 +71,7 @@ const PostContent: React.FC<IProps> = (p) => {
         <ReactMarkdown source={p.post.content} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Review />
+        <Review reviews={p.post.reviews}/>
       </TabPanel>
       <TabPanel value={value} index={2} clazz={classes.paper}>
         <Diagram />

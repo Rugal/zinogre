@@ -36,6 +36,15 @@ const GET_POST = gql`
         name
       }
       rate
+      reviews {
+        rid
+        content
+        rate
+        author {
+          uid
+          username
+        }
+      }
     }
   }
 `;

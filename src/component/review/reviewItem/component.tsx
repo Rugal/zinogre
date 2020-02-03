@@ -27,13 +27,12 @@ const ReviewItem: React.FC<IProps> = (p) => {
         aria-controls={`${name}bh-content`}
         id={`${name}bh-header`}
       >
-        <Typography className={classes.heading}>General settings</Typography>
-        <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
+        <Typography className={classes.heading}>{p.review.author.username}</Typography>
+        <Typography className={classes.secondaryHeading}>{p.review.rate}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography>
-          Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-          maximus est, id dignissim quam.
+          {p.review.content}
           </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>
