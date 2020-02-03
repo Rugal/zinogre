@@ -64,17 +64,17 @@ const PostContent: React.FC<IProps> = (p) => {
         centered={true}
       >
         <Tab label="introduction" icon={<TocIcon />} />
-        <Tab label="statistics" icon={<EqualizerIcon />} />
         <Tab label="review" icon={<RateReviewIcon />} />
+        <Tab label="statistics" icon={<EqualizerIcon />} />
       </Tabs>
       <TabPanel value={value} index={0} clazz={classes.paper}>
         <ReactMarkdown source={p.post.content} />
       </TabPanel>
-      <TabPanel value={value} index={1} clazz={classes.paper}>
-        <Diagram />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
         <Review />
+      </TabPanel>
+      <TabPanel value={value} index={2} clazz={classes.paper}>
+        <Diagram />
       </TabPanel>
     </Paper>
   );
