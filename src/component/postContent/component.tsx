@@ -13,6 +13,7 @@ import ReactMarkdown from "react-markdown";
 
 import { Post as PostDto } from "../../generated/graphql";
 import Review from "../review";
+import Diagram from "./diagram";
 import { style } from "./style";
 
 interface ITabPanelProps {
@@ -22,7 +23,7 @@ interface ITabPanelProps {
   value: any;
 }
 
-function TabPanel(props: ITabPanelProps) {
+const TabPanel = (props: ITabPanelProps) => {
   const { clazz, children, value, index, ...other } = props;
 
   return (
@@ -38,7 +39,7 @@ function TabPanel(props: ITabPanelProps) {
       {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
-}
+};
 
 interface IProps {
   post: PostDto;
@@ -70,7 +71,7 @@ const PostContent: React.FC<IProps> = (p) => {
         <ReactMarkdown source={p.post.content} />
       </TabPanel>
       <TabPanel value={value} index={1} clazz={classes.paper}>
-        HERE we need some great statistics diagram by d3 js
+        <Diagram />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Review />
