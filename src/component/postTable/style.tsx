@@ -12,7 +12,7 @@ export const style = makeStyles((theme: Theme) =>
       maxHeight: 840,
     },
     root: {
-      marginTop: 64,
+      marginTop: 32,
       width: "100%",
     },
   }),

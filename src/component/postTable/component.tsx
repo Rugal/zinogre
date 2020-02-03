@@ -108,29 +108,31 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
   ));
 
   /* tslint:disable:jsx-no-lambda */
-  const tableBody = postPage && postPage.items.map((row: Post, i) =>
-    <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
-      <TableCell>
-        <Link to={`/post/${row.pid}`}>{row.pid}</Link>
-        <Button onClick={() => download(row)}><CloudDownloadIcon /></Button>
-      </TableCell>
-      <TableCell>
-        {row.title}
-      </TableCell>
-      <TableCell>
-        {row.size}
-      </TableCell>
-      <TableCell>
-        <Link to={`/user/${row.author.uid}`}>{row.author.username}</Link>
-      </TableCell>
-      <TableCell>
-        <Rate value={row.rate} />
-      </TableCell>
-      <TableCell>
-        {row.createAt}
-      </TableCell>
-    </TableRow>,
-  );
+  const tableBody = postPage && postPage.items
+    .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+    .map((row: Post, i) =>
+      <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
+        <TableCell>
+          <Link to={`/post/${row.pid}`}>{row.pid}</Link>
+          <Button onClick={() => download(row)}><CloudDownloadIcon /></Button>
+        </TableCell>
+        <TableCell>
+          {row.title}
+        </TableCell>
+        <TableCell>
+          {row.size}
+        </TableCell>
+        <TableCell>
+          <Link to={`/user/${row.author.uid}`}>{row.author.username}</Link>
+        </TableCell>
+        <TableCell>
+          <Rate value={row.rate} />
+        </TableCell>
+        <TableCell>
+          {row.createAt}
+        </TableCell>
+      </TableRow>,
+    );
   /* tslint:enable:jsx-no-lambda */
 
   return (
