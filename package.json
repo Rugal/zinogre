@@ -53,6 +53,11 @@
     "tslint-react": "^4.0.0",
     "typescript": "3.5.3"
   },
+  "config": {
+    "openapi": "../glavenus/configuration/openapi/contract.yml",
+    "graphql": "../glavenus/src/main/resources/graphql/*",
+    "aggregation": "src/generated/graphql/all.graphql"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -61,10 +66,10 @@
     "lint": "tslint -c tslint.json 'src/**/*.tsx'",
     "lint:fix": "yarn lint --fix",
     "server": "lite-server -c lite-server.json",
-    "openapi:generate": "openapi-generator generate -i ../glavenus/configuration/openapi/contract.yml -g typescript-axios --skip-validate-spec --minimal-update -o src/generated/openapi --model-name-suffix Dto",
-    "openapi:mock": "prism mock ../glavenus/configuration/openapi/contract.yml",
+    "openapi:generate": "openapi-generator generate -i $npm_package_config_openapi -g typescript-axios --skip-validate-spec --minimal-update -o src/generated/openapi --model-name-suffix Dto",
+    "openapi:mock": "prism mock $npm_package_config_openapi",
     "graphql:generate": "graphql-codegen --config codegen.yml",
-    "graphql:mock": "graphql-faker ../glavenus/src/main/resources/graphql/query.graphqls",
+    "graphql:mock": "cat $npm_package_config_graphql > $npm_package_config_aggregation && graphql-faker $npm_package_config_aggregation",
     "generate": "yarn openapi:generate && yarn graphql:generate"
   },
   "eslintConfig": {
