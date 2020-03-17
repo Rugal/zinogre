@@ -16,5 +16,11 @@ export const style = makeStyles((theme: Theme) =>
       alignItems: "center",
       display: "flex",
     },
+    unselectable: {
+      webkitUserSelect: "none", /* Safari */
+      mozUserSelect: "none", /* Firefox */
+      msUserSelect: "none", /* IE10+/Edge */
+      userSelect: "none", /* Standard */
+    }
   }),
 );
