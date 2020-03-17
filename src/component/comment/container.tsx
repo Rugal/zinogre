@@ -4,6 +4,7 @@ import { POST_COMMENT } from "../../store/post";
 import Comment from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
+  comment: state.post.comment,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
