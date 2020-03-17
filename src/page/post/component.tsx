@@ -4,9 +4,9 @@ import gql from "graphql-tag";
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import CardItem from "../../component/cardItem";
-import ChipList from "../../component/chip";
-import PostContent from "../../component/postContent";
+import ChipList from "../../component/chipList";
+import PostBrief from "../../component/postBrief";
+import PostDetail from "../../component/postDetail";
 import { Post as PostDto } from "../../generated/graphql";
 import { style } from "./style";
 
@@ -67,13 +67,13 @@ const Post: React.FC = () => {
       <Grid container={true} justify="center" className={classes.root}>
         <Grid spacing={10} alignItems="center" justify="center" container={true} className={classes.grid}>
           <Grid item={true} xs={12}>
-            <CardItem post={data.post} />
+            <PostBrief post={data.post} />
           </Grid>
           <Grid item={false}>
             <ChipList tags={data.post.tags} />
           </Grid>
           <Grid item={true} xs={12}>
-            <PostContent post={data.post} />
+            <PostDetail post={data.post} />
           </Grid>
         </Grid>
       </Grid>

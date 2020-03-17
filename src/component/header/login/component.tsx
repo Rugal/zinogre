@@ -68,8 +68,8 @@ const Login: React.FC<IProps> = (p) => {
       }
     });
 
-  const validate = ( e : React.ChangeEvent<HTMLInputElement>) => validateInput(e.target.value);
-  const typePassword = (e : React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+  const validate = (e: React.ChangeEvent<HTMLInputElement>) => validateInput(e.target.value);
+  const typePassword = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
   const cancel = () => { p.handleClose(); resetForm(); };
 
   const content = p.showProgressBar

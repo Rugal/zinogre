@@ -5,7 +5,7 @@ import {
   Tabs,
   Typography,
 } from "@material-ui/core";
-import AddCommentIcon from '@material-ui/icons/AddComment';
+import AddCommentIcon from "@material-ui/icons/AddComment";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import TocIcon from "@material-ui/icons/Toc";
@@ -47,7 +47,7 @@ interface IProps {
   post: PostDto;
 }
 
-const PostContent: React.FC<IProps> = (p) => {
+const PostDetail: React.FC<IProps> = (p) => {
   const classes = style();
   const [value, setValue] = React.useState(0);
 
@@ -86,4 +86,4 @@ const PostContent: React.FC<IProps> = (p) => {
   );
 };
 
-export default PostContent;
+export default PostDetail;

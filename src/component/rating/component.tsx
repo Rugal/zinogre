@@ -23,6 +23,12 @@ const Rate: React.FC<IProps> = (p) => {
     iconHover: classes.iconHover,
   };
 
+  const rateNumber = __(p.value, 0) > 0 && <Box ml={2}>
+    <Typography variant="h4" color="secondary" gutterBottom={false}>
+      {p.value}
+    </Typography>
+  </Box>;
+
   return (
     <Box className={`${p.className} ${classes.rating}`}>
       <Rating
@@ -34,13 +40,7 @@ const Rate: React.FC<IProps> = (p) => {
         onChange={handler}
         precision={1}
       />
-      {
-        __(p.value, 0) > 0 && <Box ml={2}>
-          <Typography variant="h4" color="secondary" gutterBottom={false}>
-            {p.value}
-          </Typography>
-        </Box>
-      }
+      {rateNumber}
     </Box>
   );
 };

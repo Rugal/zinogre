@@ -20,7 +20,7 @@ const Comment: React.FC<IProps> = (p) => {
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => p.saveComment(event.target.value);
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate={true} autoComplete="off">
       <TextField
         autoFocus={true}
         fullWidth={true}

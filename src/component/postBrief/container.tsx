@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import CardItem from "./component";
+import PostBrief from "./component";
 
 const mapStateToProps = (state: any, ownProps: any) => ({
   token: state.user.token,
@@ -9,4 +9,4 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 const mapDispatchToProps = () => ({
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardItem);
+export default connect(mapStateToProps, mapDispatchToProps)(PostBrief);

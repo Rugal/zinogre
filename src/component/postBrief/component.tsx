@@ -19,7 +19,7 @@ interface IProps {
   token: string;
 }
 
-const CardItem: React.FC<IProps> = (p) => {
+const PostBrief: React.FC<IProps> = (p) => {
   const classes = style();
 
   const download = (post: PostDto) => new TorrentApi().download(post.pid, {
@@ -80,4 +80,4 @@ const CardItem: React.FC<IProps> = (p) => {
   );
 };
 
-export default CardItem;
+export default PostBrief;
