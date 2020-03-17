@@ -5,6 +5,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 
+import Rate from "../rating";
 import { style } from "./style";
 
 interface IProps {
@@ -13,6 +14,8 @@ interface IProps {
 
 const Comment: React.FC<IProps> = (p) => {
   const classes = style();
+
+  const [value, setValue] = React.useState<number | null>(0);
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -26,6 +29,7 @@ const Comment: React.FC<IProps> = (p) => {
         variant="outlined"
       />
       <Box className={classes.button}>
+        <Rate value={value} setValue={setValue} className={classes.rate} readonly={false}/>
         <Button variant="contained">Preview</Button>
         <Button variant="contained" color="primary">Confirm</Button>
         <Button variant="outlined" color="secondary">Cancel</Button>

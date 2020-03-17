@@ -20,5 +20,8 @@ export const style = makeStyles((theme: Theme) =>
         margin: theme.spacing(1),
       },
     },
+    rate: {
+      flexGrow: 1
+    }
   }),
 );

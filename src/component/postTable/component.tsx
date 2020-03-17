@@ -113,8 +113,8 @@ const PostTable: React.FC<IProps> = (p: IProps) => {
     .map((row: Post, i) =>
       <TableRow hover={true} role="checkbox" tabIndex={-1} key={i}>
         <TableCell>
-          <Link to={`/post/${row.pid}`}>{row.pid}</Link>
           <Button onClick={() => download(row)}><CloudDownloadIcon /></Button>
+          <Link to={`/post/${row.pid}`}>{row.pid}</Link>
         </TableCell>
         <TableCell>
           {row.title}

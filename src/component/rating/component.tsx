@@ -3,11 +3,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import Rating from "@material-ui/lab/Rating";
 import React from "react";
 
+import { __ } from "../../app/common";
 import { style } from "./style";
 
 interface IProps {
-  value: number | null;
+  className?: string;
+  readonly?: boolean;
   setValue?: (value: number | null) => any;
+  value: number | null;
 }
 
 const Rate: React.FC<IProps> = (p) => {
@@ -21,20 +24,22 @@ const Rate: React.FC<IProps> = (p) => {
   };
 
   return (
-    <Box className={classes.rating}>
+    <Box className={`${p.className} ${classes.rating}`}>
       <Rating
-        readOnly={true}
+        readOnly={__(p.readonly, true)}
         classes={css}
         value={p.value}
         icon={<FavoriteIcon fontSize="inherit" />}
         onChange={handler}
         precision={1}
       />
-      <Box ml={2}>
-        <Typography variant="h4" color="secondary" gutterBottom={false}>
-          {p.value}
-        </Typography>
-      </Box>
+      {
+        __(p.value, 0) > 0 && <Box ml={2}>
+          <Typography variant="h4" color="secondary" gutterBottom={false}>
+            {p.value}
+          </Typography>
+        </Box>
+      }
     </Box>
   );
 };
