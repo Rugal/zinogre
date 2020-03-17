@@ -10,12 +10,14 @@ import { style } from "./style";
 
 interface IProps {
   pid: number;
+  saveComment: (comment: string) => any;
 }
 
 const Comment: React.FC<IProps> = (p) => {
   const classes = style();
 
   const [value, setValue] = React.useState<number | null>(0);
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => p.saveComment(event.target.value);
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -24,6 +26,7 @@ const Comment: React.FC<IProps> = (p) => {
         fullWidth={true}
         label="Share your thought"
         multiline={true}
+        onChange={changeHandler}
         placeholder="Markdown"
         rowsMax={16}
         variant="outlined"

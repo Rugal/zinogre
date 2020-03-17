@@ -1,20 +1,16 @@
 export const GET_POST_PAGE = "post/page/GET";
-export const GET_POST = "post/GET";
-export const GET_POST_SUCCESS = "post/GET_SUCCESS";
-export const GET_POST_FAIL = "post/GET_FAIL";
-
-export interface IChip {
-  label: string;
-}
+export const POST_COMMENT = "post/comment/POST";
 
 const initialState = {
-  chips: undefined,
+  comment: undefined,
   post: undefined,
   postPage: undefined,
 };
 
 export default function PostReducer(state = initialState, action: any) {
   switch (action.type) {
+    case POST_COMMENT:
+      return { ...state, comment: action.comment };
     case GET_POST_PAGE:
       return { ...state, postPage: action.body };
     default:

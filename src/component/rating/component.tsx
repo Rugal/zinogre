@@ -26,6 +26,7 @@ const Rate: React.FC<IProps> = (p) => {
   return (
     <Box className={`${p.className} ${classes.rating}`}>
       <Rating
+        name={"" + p.value}
         readOnly={__(p.readonly, true)}
         classes={css}
         value={p.value}
