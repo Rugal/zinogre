@@ -3,12 +3,12 @@ import React from "react";
 /*
   User page, profile information.
  */
-const User: React.FC = () => {
+const Fill: React.FC = () => {
 
   return (
     <div>
-      User
+      fill
     </div>
   );
 };
-export default User;
+export default Fill;

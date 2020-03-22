@@ -1,22 +1,26 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
+import Consumption from "./page/consumption";
+import Fill from "./page/fill";
+import Item from "./page/item";
 import Index from "./page/index";
-import Post from "./page/post";
-import PostPage from "./page/postPage";
-import User from "./page/user";
+import Statistic from "./page/statistic";
 
 const S = () => {
   return (
     <Switch>
-      <Route path="/post/:pid">
-        <Post />
+      <Route path="/item">
+        <Item />
       </Route>
-      <Route path="/post">
-        <PostPage />
+      <Route path="/fill">
+        <Fill />
       </Route>
-      <Route path="/user">
-        <User />
+      <Route path="/consumption">
+        <Consumption />
+      </Route>
+      <Route path="/statistic">
+        <Statistic />
       </Route>
       <Route exact={true} path="/">
         <Index />

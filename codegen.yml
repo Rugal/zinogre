@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - '../glavenus/src/main/resources/graphql/*.graphqls'
+  - '../deviljho/src/main/resources/graphql/*.graphqls'
 generates:
   src/generated/graphql/index.tsx:
     plugins:

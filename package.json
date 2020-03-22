@@ -1,5 +1,5 @@
 {
-  "name": "mizutsune",
+  "name": "zinogre",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -27,7 +27,6 @@
     "@graphql-codegen/typescript": "1.11.2",
     "@graphql-codegen/typescript-operations": "1.11.2",
     "@graphql-codegen/typescript-react-apollo": "1.11.2",
-    "@openapitools/openapi-generator-cli": "^1.0.8-4.2.2",
     "@stoplight/prism-cli": "^3.2.3",
     "@types/bencode": "^2.0.0",
     "@types/chart.js": "^2.9.11",
@@ -39,9 +38,13 @@
     "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^5.1.3",
     "@types/styled-components": "^4.1.18",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "graphql-faker": "^2.0.0-rc.16",
     "graphql-tag": "^2.10.1",
     "lite-server": "^2.5.4",
@@ -49,13 +52,10 @@
     "react-scripts": "3.1.2",
     "react-test-renderer": "^16.9.0",
     "redux-devtools-extension": "^2.13.8",
-    "tslint": "^5.18.0",
-    "tslint-react": "^4.0.0",
     "typescript": "3.5.3"
   },
   "config": {
-    "openapi": "../glavenus/configuration/openapi/contract.yml",
-    "graphql": "../glavenus/src/main/resources/graphql/*",
+    "graphql": "../deviljho/src/main/resources/graphql/*",
     "aggregation": "src/generated/graphql/all.graphql"
   },
   "scripts": {
@@ -63,14 +63,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "lint": "tslint -c tslint.json 'src/**/*.tsx'",
+    "lint": "eslint -c .eslintrc.json 'src/**/*.tsx'",
     "lint:fix": "yarn lint --fix",
     "server": "lite-server -c lite-server.json",
-    "openapi:generate": "openapi-generator generate -i $npm_package_config_openapi -g typescript-axios --skip-validate-spec --minimal-update -o src/generated/openapi --model-name-suffix Dto",
-    "openapi:mock": "prism mock $npm_package_config_openapi",
     "graphql:generate": "graphql-codegen --config codegen.yml",
     "graphql:mock": "cat $npm_package_config_graphql > $npm_package_config_aggregation && graphql-faker $npm_package_config_aggregation",
-    "generate": "yarn openapi:generate && yarn graphql:generate"
+    "generate": "yarn graphql:generate",
+    "mock": "yarn graphql:mock"
   },
   "eslintConfig": {
     "extends": "react-app"
