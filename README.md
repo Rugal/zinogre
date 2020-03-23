@@ -8,33 +8,13 @@ Install dependencies.
 yarn install
 ```
 
-## Openapi
+## GraphQL
 
-Generate client stub.  
-The openapi contract file is in [glavenus](https://github.com/Rugal/glavenus/blob/master/configuration/openapi/contract.yml), so just clone this repository and place it at parallel level of current repository.  
-
-```bash
-# if you place `glavenus` exactly as instructed.
-yarn openapi
-# or with complete command
-openapi-generator generate \
-  --skip-validate-spec --minimal-update \
-  -g typescript-axios \
-  -i <PATH/TO/OPENAPI/CONTRACT/FILE> \
-  -o src/openapi \
-```
-Not done yet, the openapi contract file specified host as `localhost:8080`, but mock server bind port at `localhost:4010`.  
-Just go to `src/openapi/base.ts` at line `20`, change the `BASE_PATH` to the correct port.  
-
-## Mock server
-
-Start mock server.  
+Place `deviljho` project at the parallel level of `zinogre`. This is `very` important.
 
 ```bash
-# if you place `glavenus` exactly as instructed.
-yarn mock
-# or  with complete command
-prism mock PATH/TO/OPENAPI/CONTRACT/FILE
+yarn generate # generate graphql
+yarn mock & # start GraphQL mock server
 ```
 
 ## Start
