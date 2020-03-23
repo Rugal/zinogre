@@ -6,14 +6,14 @@ import React from "react";
 import { ScreenBody } from "./style";
 
 interface IProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const Body: React.FC<IProps> = (props) => {
+const Body: React.FC<IProps> = (p) => {
   return (
     <ScreenBody>
       <Container maxWidth="lg">
-        {props.children}
+        {p.children}
       </Container>
     </ScreenBody >
   );

@@ -1,10 +1,7 @@
 import {
   createStyles,
   makeStyles,
-  Theme,
 } from "@material-ui/core";
-// eslint-disable-next-line
-import React from "react";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -22,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const style = makeStyles((theme: Theme) =>
+export const style = makeStyles(() =>
   createStyles({
     root: {
       flexGrow: 1,
