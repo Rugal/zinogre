@@ -1,48 +1,88 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
+import { useQuery } from "@apollo/react-hooks";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
+} from "@material-ui/core";
+import gql from "graphql-tag";
 import React from "react";
 
-import reptile from "./image/reptile.jpg";
+import { Storage } from "../../generated/graphql";
 import { style } from "./style";
 
+interface IStoragesResult {
+  storages: [Storage];
+}
+
+const GET_STORAGES = gql`
+{
+  storages {
+    sid
+    quantity
+    createAt
+    item {
+      iid
+      name
+      tags {
+        tid
+        name
+      }
+    }
+  }
+}
+`;
+
 /*
-  Index page, site announcement.
+  Index page, storage list
  */
 const Index: React.FC = () => {
   const classes = style();
 
+  const { data } = useQuery<IStoragesResult>(GET_STORAGES);
+  if (!data) {
+    return null;
+  }
+  const { storages } = data;
+  console.log(storages);
+
+  const date = (input: number) => {
+    const d = new Date(input * 1000);
+    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+  };
+
+  const rows = storages.map(s =>
+    <TableRow key={s.sid}>
+      <TableCell component="th" scope="row">
+        {s.item.name}
+      </TableCell>
+      <TableCell component="th" scope="row">
+        {s.quantity}
+      </TableCell>
+      <TableCell component="th" scope="row">
+        {date(s.createAt)}
+      </TableCell>
+    </TableRow>
+  );
+
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={reptile}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom={true} variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
+    <TableContainer component={Paper} className={classes.root}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Item</TableCell>
+            <TableCell>Quantity</TableCell>
+            <TableCell>Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

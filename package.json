@@ -67,7 +67,7 @@
     "lint:fix": "yarn lint --fix",
     "server": "lite-server -c lite-server.json",
     "graphql:generate": "graphql-codegen --config codegen.yml",
-    "graphql:mock": "cat $npm_package_config_graphql > $npm_package_config_aggregation && graphql-faker $npm_package_config_aggregation",
+    "graphql:mock": "cat $npm_package_config_graphql > $npm_package_config_aggregation && graphql-faker --port 8080 $npm_package_config_aggregation",
     "generate": "yarn graphql:generate",
     "mock": "yarn graphql:mock"
   },
