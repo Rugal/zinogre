@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
   Paper,
@@ -10,33 +10,21 @@ import {
   TableHead,
   TableRow
 } from "@material-ui/core";
-import gql from "graphql-tag";
-import React from "react";
+import React, { useState } from "react";
 
-import { Storage } from "../../generated/graphql";
+import {
+  POST_CONSUME,
+  GET_STORAGES,
+  IConsumeVars,
+  IStorageResult,
+  IStoragesResult
+} from "./request";
 import { style } from "./style";
 
-interface IStoragesResult {
-  storages: [Storage];
-}
-
-const GET_STORAGES = gql`
-{
-  storages {
-    sid
-    quantity
-    createAt
-    item {
-      iid
-      name
-      tags {
-        tid
-        name
-      }
-    }
-  }
-}
-`;
+const date = (input: number) => {
+  const d = new Date(input * 1000);
+  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+};
 
 /*
   Consumption page.
@@ -44,15 +32,31 @@ const GET_STORAGES = gql`
 const Consumption: React.FC = () => {
   const classes = style();
 
-  const { data } = useQuery<IStoragesResult>(GET_STORAGES);
+  const [map, setMap] = useState(new Map<number, number>());
+  const onChangeCommittedHandler = (e: React.ChangeEvent<{}>, sid: number, quantity: number | number[]) => {
+    if (typeof (quantity) !== "number") {
+      return;
+    }
+    if (quantity === 0) {
+      map.delete(sid);
+    }
+    else {
+      map.set(sid, quantity);
+    }
+    setMap(map);
+  };
+
+  const [submitConsumption] = useMutation<IStorageResult, IConsumeVars>(POST_CONSUME);
+
+  const { data, refetch } = useQuery<IStoragesResult>(GET_STORAGES);
   if (!data) {
     return null;
   }
   const { storages } = data;
 
-  const date = (input: number) => {
-    const d = new Date(input * 1000);
-    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+  const onClickHandler = () => {
+    map.forEach((value, key) => submitConsumption({ variables: { sid: key, quantity: value } }));
+    refetch();
   };
 
   const rows = storages.map(s =>
@@ -70,10 +74,11 @@ const Consumption: React.FC = () => {
         <Slider
           aria-labelledby="discrete-slider-always"
           defaultValue={0}
-          valueLabelDisplay="auto"
-          step={1}
-          min={0}
           max={s.quantity}
+          min={0}
+          onChangeCommitted={(e: React.ChangeEvent<{}>, v: number | number[]) => onChangeCommittedHandler(e, s.sid, v)}
+          step={1}
+          valueLabelDisplay="auto"
         />
       </TableCell>
     </TableRow>
@@ -83,7 +88,9 @@ const Consumption: React.FC = () => {
     <Paper className={classes.root}>
       <TableContainer >
         <Table className={classes.table} aria-label="simple table">
-          <caption><Button variant="contained" color="primary">submit</Button></caption>
+          <caption>
+            <Button variant="contained" color="primary" onClick={onClickHandler}>submit</Button>
+          </caption>
           <TableHead>
             <TableRow>
               <TableCell>Item</TableCell>
