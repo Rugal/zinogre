@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 
+import { date } from "../common";
 import {
   POST_CONSUME,
   GET_STORAGES,
@@ -20,11 +21,6 @@ import {
   IStoragesResult
 } from "./request";
 import { style } from "./style";
-
-const date = (input: number) => {
-  const d = new Date(input * 1000);
-  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-};
 
 /*
   Consumption page.

@@ -37,7 +37,7 @@ const Header: React.FC<IProps> = (props) => {
         <Link to="/consumption" className={classes.link}>
           <IconButton color="inherit"><UnarchiveIcon className={classes.icon} /></IconButton>
         </Link>
-        <Link to="/statistics" className={classes.link}>
+        <Link to="/statistic" className={classes.link}>
           <IconButton color="inherit"><DataUsageIcon className={classes.icon} /></IconButton>
         </Link>
       </Toolbar>

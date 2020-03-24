@@ -8,33 +8,11 @@ import {
   TableHead,
   TableRow
 } from "@material-ui/core";
-import gql from "graphql-tag";
 import React from "react";
 
-import { Storage } from "../../generated/graphql";
+import { date } from "../common";
+import { IStoragesResult, GET_STORAGES } from "./request";
 import { style } from "./style";
-
-interface IStoragesResult {
-  storages: [Storage];
-}
-
-const GET_STORAGES = gql`
-{
-  storages {
-    sid
-    quantity
-    createAt
-    item {
-      iid
-      name
-      tags {
-        tid
-        name
-      }
-    }
-  }
-}
-`;
 
 /*
   Index page, storage list
@@ -48,11 +26,6 @@ const Index: React.FC = () => {
   }
   const { storages } = data;
   console.log(storages);
-
-  const date = (input: number) => {
-    const d = new Date(input * 1000);
-    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-  };
 
   const rows = storages.map(s =>
     <TableRow key={s.sid}>
