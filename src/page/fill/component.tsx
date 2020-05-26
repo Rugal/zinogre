@@ -56,7 +56,7 @@ const Fill: React.FC = () => {
     refetch();
   };
 
-  const tags = (t: Tag[]) => {
+  const tags = (t: Tag[] | null | undefined) => {
     return t && t.map((v: Tag, i: number) => <Chip key={i} label={v.name} clickable color={i % 2 === 1 ? "primary" : "default"} />);
   };
 

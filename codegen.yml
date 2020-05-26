@@ -1,6 +1,5 @@
 overwrite: true
-schema:
-  - '../deviljho/src/main/resources/graphql/*.graphqls'
+schema: https://fridge-development.herokuapp.com/graphql
 generates:
   src/generated/graphql/index.tsx:
     plugins:
